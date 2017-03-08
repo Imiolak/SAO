@@ -1,6 +1,5 @@
-*Notatki
-08.03
-
+#Notatki
+##08.03
 platforma do wstrzykiwania strategii
 spłaszczony zbiór strategii - różne parametry = różna strategia
 
@@ -16,10 +15,11 @@ jeżeli strategia bez parametrów zmieniamy na inną strategię
 	czy zmieniamy na inne parametry czy na inny algorytm?
 
 do zrobienia:
-1. platforma
-2. strategie/algorytmy
-3. turnieje
 
-https://github.com/LinxiFan/Reversi
-http://mnemstudio.org/game-reversi-example-2.htm
-https://github.com/Zolomon/reversi-ai
+1. platforma
+1. strategie/algorytmy
+1. turnieje
+
+- https://github.com/LinxiFan/Reversi
+- http://mnemstudio.org/game-reversi-example-2.htm
+- https://github.com/Zolomon/reversi-ai
