@@ -1,5 +1,5 @@
-#Notatki
-##08.03
+# Notatki
+## 08.03
 platforma do wstrzykiwania strategii
 spłaszczony zbiór strategii - różne parametry = różna strategia
 
