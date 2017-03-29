@@ -24,6 +24,8 @@ do zrobienia:
 - https://github.com/LinxiFan/Reversi
 - http://mnemstudio.org/game-reversi-example-2.htm
 - https://github.com/Zolomon/reversi-ai
+- https://en.wikibooks.org/wiki/Reversi/Strategy
+- http://www.samsoft.org.uk/reversi/strategy.htm
 
 ## 15.03
 8 strategii + parametryzacja
