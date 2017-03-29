@@ -48,16 +48,16 @@ TODO:
 
 ## 29.03
 state of the art
-	* czy sa prace na ten temat
-	* inne platformy
-	* state of the art na początku - czego brakuje, co można poprawić -> definicja problemu wynika ze state of the art
+* czy sa prace na ten temat
+* inne platformy
+* state of the art na początku - czego brakuje, co można poprawić -> definicja problemu wynika ze state of the art
 
 znaleźć artykuły o znajdowaniu strategii
 
 żeby rozwiązać problem przeszukiwania (od tego zacząć):
-	* zdefiniowane strategie
-	* klasa strategii i parametrów, zbiory wartośći parametrów
+* zdefiniowane strategie
+* klasa strategii i parametrów, zbiory wartośći parametrów
 
 ocena strategii:
-	* wynik turnieju
-	* wybór maty turniejowej
+* wynik turnieju
+* wybór maty turniejowej
