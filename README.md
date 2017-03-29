@@ -28,28 +28,34 @@ The aim of this project is to autmate the process of finding the optimal strateg
 1. Stable discs - aims to capture squares that can't be recaptured
     Parameters:
     * stable-disk-weight - capture stable disk or capture something that yields more points
+    
     Value range - [0, 1] - 1 always capture stable, 0 always capture for points
 
 1. Corners - aims to capture board corners
     Parameters:
     * number-of-corners-to-capture
+    
     Value set - {1, 2, 3, 4}
 
 1. Positional - based on risk map, aims to capture low-risk squares and aviod high-risk squares
     Parameters:
     * risk-map - array of 5 integers - risk value for each region
+        
     Value set for each region - {0, 1, .. , 99 }
+    
     <img src="docs/img/risk_zones.gif">
 
 1. Mobility - aims to make such moves that maximize number of your moves and minimize number of opponent's moves
     Parameters:
     * maximize - decide whether to maximize self moves or minimize opponent's moves
+    
     Value range - [0, 1] - 1 always maximize self moves, 0 always minimize opponent's moves
 
 1. Mixed strategy - used one strategy at first, changes to another strategy when condition is met
     Parameters:
     * strategy1 - strategy to use at the beginning of the game
     * changeCondition - number of moves to make before changing strategy
+    
     Value set - { 1, 2, .. , 19 }
     * strategy2 - strategy to use after changeCondigion in met
 
