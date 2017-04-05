@@ -4,6 +4,9 @@
 * https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
 * http://www.xiaotu.com/pub/ChonS05a.pdf
 * http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
+* http://nn.cs.utexas.edu/downloads/papers/moriarty.discovering.pdf
+* http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.1746&rep=rep1&type=pdf
+* https://skatgame.net/mburo/ps/compoth.pdf
 
 ## 2. Problem definition
 
