@@ -1,6 +1,9 @@
 # Reversi (aka Othello)
 
 ## 1. State of the art
+* https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
+* http://www.xiaotu.com/pub/ChonS05a.pdf
+* http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
 
 ## 2. Problem definition
 
