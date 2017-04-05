@@ -61,3 +61,20 @@ znaleźć artykuły o znajdowaniu strategii
 ocena strategii:
 * wynik turnieju
 * wybór maty turniejowej
+
+## 05.04
+pomysł: wyeliminować bezsensowne strategie - trudne (random można od razu wywalić :D)
+
+operacje zaburzania stchastycznego: (w każdym jeszcze losujemy czy zaburzamy)
+* losowanie punkt zmiany strategii - sprawdzamy czy została jedna czy dwie
+* losowanie strategii
+* losowanie parametrów strategii
+
+może rozpatrywać tylko strategie mieszane? (warunek zmiany "0" było by pojedynczą strategią)
+
+wymyślić krzyżowanie strategii (może )
+
+więcej zadań:
+* zdefiniować przestrzeń rozwiązań dopuszczalnych (wszystkie strategie, wszystkie parametry - czy brać pod uwagę wszystkie parametry) - efekt: "struktura" rozwiązania - reprezentacja przełączanej strategii
+* sformalizować zaburzanie - drzewo decyzyjne
+* najwięcej do zastanawiania - synteza/krzyżowanie strategii - jak po wylosowaniu dwóch/więcej strategii zrobić z nich lepsze "dziecko"
