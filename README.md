@@ -36,6 +36,8 @@ The aim of this project is to autmate the process of finding the optimal strateg
     * stable-disk-weight - capture stable disk or capture something that yields more points
     
     Value range - [0, 1] - 1 always capture stable, 0 always capture for points
+    
+    Value step - 0.1
 
 1. Corners - aims to capture board corners
     Parameters:
@@ -56,14 +58,55 @@ The aim of this project is to autmate the process of finding the optimal strateg
     * maximize - decide whether to maximize self moves or minimize opponent's moves
     
     Value range - [0, 1] - 1 always maximize self moves, 0 always minimize opponent's moves
+    
+    Value step - 0.1
 
 1. Mixed strategy - used one strategy at first, changes to another strategy when condition is met
     Parameters:
     * strategy1 - strategy to use at the beginning of the game
     * changeCondition - number of moves to make before changing strategy
     
-    Value set - { 1, 2, .. , 19 }
+    Value set - { 0, 1, 2, .. , 19 } - 0 indicates that only strategt 1 should be used throughout the game
     * strategy2 - strategy to use after changeCondigion in met
+    
+### 2.4 Problem resolution proposition
+#### 2.4.1 Model
+Each strategy will be represented as an agent containing to following properties:
+* gamesPlayed [int] - number of games played by the stratgy agent
+* gamesWon [int] - numbers of games won
+* earlyGameStrategy [strategy] - strategy that should be used from the start of the game
+* strategySwitchPoint [int] - number indicating after how many moves should the agent change strategy to lateGameStrategy - if the value is 0, only earlyGameStrategy should be used throughout the game
+* lateGameStrategy [strategy] - strategy that should be used when {strategySwitchPoints} moves are made
+
+#### 2.4.2 Initial population
+
+#### 2.4.3 Agent disturbance
+If at any point agetn strategies disturbance is to be performed, the following decision tree determines the details:
+
+```
+# check to see if distirbance should be performed
+if random(0,1) > win%
+    # check to see whether to disturb earlyGameStrategy
+    if random(0,1) > 0.5
+        # check to see whether to disturb parameters or change strategy
+        if random(0.1) > 0.5
+            DisturbParameters(earlyGameStrategy)
+        else
+            ChangeStrategy(earlyGameStrategy)
+    # check to see whether to disturb strategySwitchPoint
+    if random(0,1) > 0.5
+        if random(0,1) > 0.5
+            strategySwitchPoint = 0
+        else
+            strategySwitchPoint = random(1,20)
+    # check to see whether to disturb lateGameStrategy
+    if random(0,1) > 0.5
+        # check to see whether to disturb parameters or change strategy
+        if random(0.1) > 0.5
+            DisturbParameters(lateGameStrategy)
+        else
+            ChangeStrategy(lateGameStrategy)
+```
 
 ## 3. Software documentation
 
