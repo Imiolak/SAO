@@ -81,31 +81,43 @@ Each strategy will be represented as an agent containing to following properties
 #### 2.4.2 Initial population
 
 #### 2.4.3 Agent disturbance
-If at any point agetn strategies disturbance is to be performed, the following decision tree determines the details:
-
+If at any point disturbance of agent's strategies is to be performed, a decision tree determines the details of the disturbance. The decistion tree requires the following parameters:
+* disturbEarlyGameStrategyChance
+* replaceEarlyGameStrategyChance
+* disturbStrategySwitchPointChance
+* useOnlyEarlyGameStrategyChance
+* disturbLateGameStrategyChance
+* replaceLateGameStrategyChance
+The decision tree has the following structure:
 ```
-# check to see if distirbance should be performed
-if random(0,1) > win%
-    # check to see whether to disturb earlyGameStrategy
-    if random(0,1) > 0.5
-        # check to see whether to disturb parameters or change strategy
-        if random(0.1) > 0.5
-            DisturbParameters(earlyGameStrategy)
-        else
-            ChangeStrategy(earlyGameStrategy)
-    # check to see whether to disturb strategySwitchPoint
-    if random(0,1) > 0.5
-        if random(0,1) > 0.5
-            strategySwitchPoint = 0
-        else
-            strategySwitchPoint = random(1,20)
-    # check to see whether to disturb lateGameStrategy
-    if random(0,1) > 0.5
-        # check to see whether to disturb parameters or change strategy
-        if random(0.1) > 0.5
-            DisturbParameters(lateGameStrategy)
-        else
-            ChangeStrategy(lateGameStrategy)
+DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategyChance,
+        disturbStrategySwitchPointChance, useOnlyEarlyGameStrategyChance,
+        disturbLateGameStrategyChance, replaceLateGameStrategyChance)
+{
+    # check to see if distirbance should be performed
+    if random(0,1) > win%
+        # check to see whether to disturb earlyGameStrategy
+        if random(0,1) < disturbEarlyGameStrategyChance
+            # check to see whether to disturb parameters or change strategy
+            if random(0.1) < replaceEarlyGameStrategyChance
+                ChangeStrategy(earlyGameStrategy)
+            else
+                DisturbParameters(earlyGameStrategy)
+
+        # check to see whether to disturb strategySwitchPoint
+        if random(0,1) < disturbStrategySwitchPointChance
+            if random(0,1) < useOnlyEarlyGameStrategyChance
+                strategySwitchPoint = 0
+            else
+                strategySwitchPoint = random(1,20)
+        # check to see whether to disturb lateGameStrategy
+        if random(0,1) < disturbLateGameStrategyChance
+            # check to see whether to disturb parameters or change strategy
+            if random(0.1) < replaceLateGameStrategyChance
+                ChangeStrategy(lateGameStrategy)
+            else
+                DisturbParameters(lateGameStrategy)
+}            
 ```
 
 ## 3. Software documentation
