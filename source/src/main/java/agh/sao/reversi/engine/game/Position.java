@@ -59,6 +59,21 @@ public class Position {
         return from.columnName != 'a' && from.rowNumber < 8 ? new Position(COLUMN_NAMES.get(leftPositionIndex), from.rowNumber + 1) : null;
     }
 
+    static Position rightAbove(Position from) {
+        int rightPositionIndex = COLUMN_NAMES.indexOf(from.columnName) + 1;
+        return from.columnName != 'h' && from.rowNumber < 8 ? new Position(COLUMN_NAMES.get(rightPositionIndex), from.rowNumber + 1) : null;
+    }
+
+    static Position leftBelow(Position from) {
+        int leftPositionIndex = COLUMN_NAMES.indexOf(from.columnName) - 1;
+        return from.columnName != 'a' && from.rowNumber > 1 ? new Position(COLUMN_NAMES.get(leftPositionIndex), from.rowNumber - 1) : null;
+    }
+
+    static Position rightBelow(Position from) {
+        int rightPositionIndex = COLUMN_NAMES.indexOf(from.columnName) + 1;
+        return from.columnName != 'h' && from.rowNumber > 1 ? new Position(COLUMN_NAMES.get(rightPositionIndex), from.rowNumber - 1) : null;
+    }
+
     boolean isOppositeTo(PieceColor otherColor, GameState field) {
         Piece myPiece = field.valueAt(this);
         return myPiece != null && myPiece.getColor().equals(opposite(otherColor));

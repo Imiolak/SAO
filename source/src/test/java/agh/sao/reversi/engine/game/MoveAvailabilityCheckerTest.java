@@ -282,4 +282,129 @@ public class MoveAvailabilityCheckerTest {
         assertThat(moveChecker.canMove(move)).isFalse();
     }
 
+    @Test
+    public void canMoveCapturingMoreThenOneOpponentFromLeftTopDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"B", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "W", "*", "*", "B", "*", "*", "*"},
+                {"*", "*", "W", "W", "W", "B", "*", "*"},
+                {"*", "*", "*", "W", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "W", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+        });
+        Move move = new Move(Dark, new Position('g', 1));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
+    // Moving Right Top Diagonal
+
+    @Test
+    public void canMoveWhenCapturingSingleOpponentFromRightTopDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "B", "*", "*", "B", "*", "*", "*"},
+                {"*", "*", "W", "W", "W", "B", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+        });
+        Move move = new Move(Dark, new Position('d', 3));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
+    @Test
+    public void canMoveCapturingMoreThenOneOpponentFromRightTopDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"B", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "W", "*", "*", "B", "*", "*", "B"},
+                {"*", "*", "W", "W", "W", "B", "W", "*"},
+                {"*", "*", "*", "W", "*", "W", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "W", "*", "W", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+        });
+        Move move = new Move(Dark, new Position('c', 1));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
+    // Moving Right Bottom Diagonal
+
+    @Test
+    public void canMoveWhenCapturingSingleOpponentFromRightBottomDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "B", "*", "*", "B", "*", "*", "*"},
+                {"*", "*", "W", "W", "W", "B", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "W", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "B", "*", "*", "*", "*", "*"},
+        });
+        Move move = new Move(Dark, new Position('a', 3));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
+    @Test
+    public void canMoveCapturingMoreThenOneOpponentFromLeftBottomDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "W", "*", "*", "B", "*", "*", "*"},
+                {"*", "*", "W", "W", "W", "B", "W", "*"},
+                {"*", "*", "*", "W", "*", "W", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "W", "*", "W", "*", "*"},
+                {"*", "*", "B", "*", "*", "*", "B", "*"},
+        });
+        Move move = new Move(Dark, new Position('a', 7));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
+    // Moving Left Bottom Diagonal
+
+    @Test
+    public void canMoveWhenCapturingSingleOpponentFromLeftBottomDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "B", "*", "*", "B", "*", "*", "*"},
+                {"*", "*", "W", "W", "W", "B", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "W", "*", "*", "*", "*", "*", "*"},
+                {"B", "*", "*", "*", "*", "*", "*", "*"},
+        });
+        Move move = new Move(Dark, new Position('c', 3));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
+    @Test
+    public void canMoveCapturingMoreThenOneOpponentFromRightBottomDiagonal() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"B", "*", "*", "*", "B", "*", "*", "*"},
+                {"*", "W", "*", "*", "B", "*", "*", "*"},
+                {"*", "*", "W", "W", "W", "B", "W", "*"},
+                {"*", "*", "*", "W", "*", "W", "*", "*"},
+                {"*", "*", "*", "*", "W", "*", "*", "*"},
+                {"*", "*", "*", "W", "*", "W", "*", "*"},
+                {"*", "*", "B", "*", "*", "*", "*", "*"},
+        });
+        Move move = new Move(Dark, new Position('h', 6));
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(move)).isTrue();
+    }
+
 }

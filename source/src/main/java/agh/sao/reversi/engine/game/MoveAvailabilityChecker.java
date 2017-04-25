@@ -20,6 +20,9 @@ public class MoveAvailabilityChecker {
         moveOpportunities.add(new LeftMoveOpportunity(gameState));
         moveOpportunities.add(new RightMoveOpportunity(gameState));
         moveOpportunities.add(new LeftAboveDiagonalMoveOpportunity(gameState));
+        moveOpportunities.add(new RightAboveDiagonalMoveOpportunity(gameState));
+        moveOpportunities.add(new LeftBelowDiagonalMoveOpportunity(gameState));
+        moveOpportunities.add(new RightBelowDiagonalMoveOpportunity(gameState));
     }
 
     public boolean canMove(Move move){
@@ -131,6 +134,45 @@ class LeftAboveDiagonalMoveOpportunity extends MoveOpportunity {
     @Override
     Position neighbour(Position position) {
         return leftAbove(position);
+    }
+
+}
+
+class RightAboveDiagonalMoveOpportunity extends MoveOpportunity {
+
+    RightAboveDiagonalMoveOpportunity(GameState gameState) {
+        super(gameState);
+    }
+
+    @Override
+    Position neighbour(Position position) {
+        return rightAbove(position);
+    }
+
+}
+
+class LeftBelowDiagonalMoveOpportunity extends MoveOpportunity {
+
+    LeftBelowDiagonalMoveOpportunity(GameState gameState) {
+        super(gameState);
+    }
+
+    @Override
+    Position neighbour(Position position) {
+        return leftBelow(position);
+    }
+
+}
+
+class RightBelowDiagonalMoveOpportunity extends MoveOpportunity {
+
+    RightBelowDiagonalMoveOpportunity(GameState gameState) {
+        super(gameState);
+    }
+
+    @Override
+    Position neighbour(Position position) {
+        return rightBelow(position);
     }
 
 }
