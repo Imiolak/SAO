@@ -62,7 +62,10 @@ abstract class MoveOpportunity {
         Position currentPosition = closestNeighbour;
         while ((currentPosition = neighbour(currentPosition)) != null) {
             Piece currentPiece = gameState.valueAt(currentPosition);
-            if (currentPiece != null && moveColor.equals(currentPiece.getColor())) {
+            if(currentPiece == null){
+                break;
+            }
+            else if(moveColor.equals(currentPiece.getColor())) {
                 return true;
             }
         }

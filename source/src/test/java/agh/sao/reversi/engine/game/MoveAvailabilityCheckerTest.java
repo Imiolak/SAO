@@ -407,4 +407,22 @@ public class MoveAvailabilityCheckerTest {
         assertThat(moveChecker.canMove(move)).isTrue();
     }
 
+    @Test
+    public void cantCaptureIfEmptyValueBetween() {
+        GameState gameState = new GameState(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "B", "W", "*", "W", "*", "*"},
+                {"*", "*", "W", "W", "W", "*", "*", "*"},
+                {"*", "*", "B", "W", "B", "*", "*", "*"},
+                {"*", "*", "B", "B", "B", "B", "B", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+        });
+        moveChecker = new MoveAvailabilityChecker(gameState);
+        assertThat(moveChecker.canMove(new Move(Dark, new Position('c', 7)))).isFalse();
+        assertThat(moveChecker.canMove(new Move(Dark, new Position('f', 7)))).isFalse();
+        assertThat(moveChecker.canMove(new Move(Dark, new Position('g', 6)))).isFalse();
+    }
+
 }

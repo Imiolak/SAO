@@ -36,6 +36,15 @@ public class Position {
         return 8 - rowNumber;
     }
 
+    boolean isOppositeTo(PieceColor otherColor, GameState field) {
+        Piece myPiece = field.valueAt(this);
+        return myPiece != null && myPiece.getColor().equals(opposite(otherColor));
+    }
+
+    static char columnNameForIndex(int columnIndex){
+        return COLUMN_NAMES.get(columnIndex);
+    }
+
     static Position above(Position from) {
         return from.rowNumber < 8 ? new Position(from.columnName, from.rowNumber + 1) : null;
     }
@@ -74,8 +83,27 @@ public class Position {
         return from.columnName != 'h' && from.rowNumber > 1 ? new Position(COLUMN_NAMES.get(rightPositionIndex), from.rowNumber - 1) : null;
     }
 
-    boolean isOppositeTo(PieceColor otherColor, GameState field) {
-        Piece myPiece = field.valueAt(this);
-        return myPiece != null && myPiece.getColor().equals(opposite(otherColor));
+    @Override
+    public String toString() {
+        return String.format("Position: {%s,%s}", columnName, rowNumber);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (rowNumber != position.rowNumber) return false;
+        return columnName == position.columnName;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rowNumber;
+        result = 31 * result + (int) columnName;
+        return result;
     }
 }

@@ -34,6 +34,10 @@ public class GameState {
         return board[position.rowNumberToFieldIndex()][position.columnNameToFieldIndex()];
     }
 
+    public Piece valueAt(int row, int col) {
+        return board[row][col];
+    }
+
     private Piece[][] fromStringBoard(String[][] initialState) {
         Piece[][] board = new Piece[8][8];
         for (int i = 0; i < 8; i++) {
@@ -77,4 +81,5 @@ public class GameState {
     public int hashCode() {
         return Arrays.deepHashCode(board);
     }
+
 }
