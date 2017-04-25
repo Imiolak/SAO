@@ -1,0 +1,80 @@
+package agh.sao.reversi.engine.game;
+
+import java.util.Arrays;
+
+/**
+ * Created by Imiolak on 14-Mar-17.
+ */
+public class GameState {
+
+    private final Piece[][] board;
+
+    public GameState() {
+        this(new String[][]{
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "W", "B", "*", "*", "*"},
+                {"*", "*", "*", "B", "W", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+                {"*", "*", "*", "*", "*", "*", "*", "*"},
+        });
+    }
+
+    public GameState(String[][] initialState) {
+        this.board = fromStringBoard(initialState);
+    }
+
+    public void applyMove(Move move) {
+
+    }
+
+    public Piece valueAt(Position position) {
+        return board[position.rowNumberToFieldIndex()][position.columnNameToFieldIndex()];
+    }
+
+    private Piece[][] fromStringBoard(String[][] initialState) {
+        Piece[][] board = new Piece[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ("*".equals(initialState[i][j])) {
+                    board[i][j] = null;
+                } else {
+                    board[i][j] = new Piece(PieceColor.fromString(initialState[i][j]));
+                }
+            }
+        }
+        return board;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder boardAsString = new StringBuilder();
+        for (Piece[] row : board) {
+            for (Piece value : row) {
+                if (value != null) {
+                    boardAsString.append(value);
+                } else {
+                    boardAsString.append("*");
+                }
+                boardAsString.append(" ");
+            }
+            boardAsString.append("\n");
+        }
+        return boardAsString.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        GameState gameState = (GameState) other;
+        return Arrays.deepEquals(board, gameState.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(board);
+    }
+}

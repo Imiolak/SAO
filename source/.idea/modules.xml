@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/reversi.iml" filepath="$PROJECT_DIR$/reversi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SAO.iml" filepath="$PROJECT_DIR$/.idea/modules/SAO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SAO_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SAO_main.iml" group="SAO" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SAO_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SAO_test.iml" group="SAO" />
     </modules>
   </component>
 </project>

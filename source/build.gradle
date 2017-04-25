@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+    compile 'junit:junit:4.12'
+    compile 'org.assertj:assertj-core:3.6.2'
+}
