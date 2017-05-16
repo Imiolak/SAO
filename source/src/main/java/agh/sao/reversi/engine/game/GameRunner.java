@@ -54,6 +54,8 @@ public class GameRunner {
         } while (!gameEndConditionMet(turnCounter, availableMoves));
     }
 
+    //TODO not correct game is not finished in player does not have move, player just skips the move
+    //TODO game is finished only when both players dont have a move
     private boolean gameEndConditionMet(int turnCounter, List<Move> availableMoves) {
         return turnCounter >= 60
                 || availableMoves.isEmpty();
