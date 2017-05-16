@@ -2,7 +2,11 @@ package agh.sao.reversi.engine.game;
 
 import agh.sao.reversi.engine.player.IPlayer;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static agh.sao.reversi.engine.game.PieceColor.Light;
 
 /**
  * Created by Imiolak on 14-Mar-17.
@@ -23,8 +27,18 @@ public class GameRunner {
     public GameResults runGame() {
         initializeGame();
         gameLoop();
+        return new GameResults(decideWinner());
+    }
 
-        return new GameResults();
+    private IPlayer decideWinner() {
+        int dark = gameState.countDark();
+        int light = gameState.countLight();
+        if (light > dark)
+            return player1.getPlayerColor() == Light ? player1 : player2;
+        else if (light < dark)
+            return player1.getPlayerColor() == Light ? player2 : player1;
+        else
+            return null;
     }
 
     private void initializeGame() {
@@ -34,31 +48,30 @@ public class GameRunner {
     }
 
     private void gameLoop() {
-        int turnCounter = 0;
-        IPlayer playerToMove = this.playerToMoveResolver.getNextPlayer();
-        List<Move> availableMoves = this.availableMovesResolver.getAvailableMovesForPlayer(
-                playerToMove.getPlayerColor(),
-                this.gameState
-        );
+        Map<PieceColor, Boolean> lastSkipped = new HashMap<>();
+        lastSkipped.put(player1.getPlayerColor(), false);
+        lastSkipped.put(player2.getPlayerColor(), false);
 
-        do {
-            Move move = playerToMove.chooseMoveToPerform(this.gameState, availableMoves);
-            this.gameState.applyMove(move);
-
-            turnCounter++;
-            playerToMove = this.playerToMoveResolver.getNextPlayer();
-            availableMoves = this.availableMovesResolver.getAvailableMovesForPlayer(
+        while (gameEndConditionMet(lastSkipped)) {
+            IPlayer playerToMove = this.playerToMoveResolver.getNextPlayer();
+            List<Move> availableMoves = this.availableMovesResolver.getAvailableMovesForPlayer(
                     playerToMove.getPlayerColor(),
                     this.gameState
             );
-        } while (!gameEndConditionMet(turnCounter, availableMoves));
+            if (availableMoves.isEmpty()) {
+                lastSkipped.put(playerToMove.getPlayerColor(), true);
+            } else {
+                lastSkipped.put(playerToMove.getPlayerColor(), false);
+                Move move = playerToMove.chooseMoveToPerform(this.gameState, availableMoves);
+                this.gameState.applyMove(move);
+            }
+
+        }
+
     }
 
-    //TODO not correct game is not finished in player does not have move, player just skips the move
-    //TODO game is finished only when both players dont have a move
-    private boolean gameEndConditionMet(int turnCounter, List<Move> availableMoves) {
-        return turnCounter >= 60
-                || availableMoves.isEmpty();
+    private boolean gameEndConditionMet(Map<PieceColor, Boolean> lastSkipped) {
+        return !(lastSkipped.get(player1.getPlayerColor()) && lastSkipped.get(player2.getPlayerColor()));
     }
 
 }

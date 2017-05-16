@@ -11,7 +11,7 @@ public class Main {
         IPlayer firstPl = new RealPersonPlayer(PieceColor.Light);
         IPlayer secondPl = new RealPersonPlayer(PieceColor.Dark);
         GameRunner gameRunner = new GameRunner(secondPl, firstPl);
-        gameRunner.runGame();
+        System.out.println("Game ended result - " + gameRunner.runGame());
     }
 
 }

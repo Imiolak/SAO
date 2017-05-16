@@ -91,4 +91,21 @@ public class GameState {
         return Arrays.deepHashCode(board);
     }
 
+    public int countDark() {
+        int count = 0;
+        for (Piece[] pieces : board)
+            for (Piece piece : pieces)
+                if (piece.getColor() == PieceColor.Dark)
+                    count++;
+        return count;
+    }
+
+    public int countLight() {
+        int count = 0;
+        for (Piece[] pieces : board)
+            for (Piece piece : pieces)
+                if (piece.getColor() == PieceColor.Light)
+                    count++;
+        return count;
+    }
 }
