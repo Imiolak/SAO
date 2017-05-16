@@ -59,4 +59,36 @@ public class GameStateTest {
         new Position('z', 1);
     }
 
+    @Test
+    public void applyMoveChangesFieldStateInAllDirections() {
+        GameState initialState = new GameState(
+                new String[][]{
+                        {"*", "*", "*", "*", "*", "*", "*", "*"},
+                        {"*", "*", "W", "W", "W", "W", "W", "W"},
+                        {"*", "*", "W", "B", "B", "B", "B", "W"},
+                        {"*", "*", "W", "B", "B", "B", "B", "W"},
+                        {"*", "*", "W", "B", "B", "*", "B", "W"},
+                        {"*", "*", "W", "B", "B", "B", "B", "W"},
+                        {"*", "*", "W", "W", "W", "W", "W", "W"},
+                        {"*", "*", "*", "*", "*", "*", "*", "*"}}
+        );
+
+        initialState.applyMove(new Move(PieceColor.Light, new Position('f', 4)));
+
+        GameState expectedState = new GameState(
+                new String[][]{
+                        {"*", "*", "*", "*", "*", "*", "*", "*"},
+                        {"*", "*", "W", "W", "W", "W", "W", "W"},
+                        {"*", "*", "W", "W", "B", "W", "B", "W"},
+                        {"*", "*", "W", "B", "W", "W", "W", "W"},
+                        {"*", "*", "W", "W", "W", "W", "W", "W"},
+                        {"*", "*", "W", "B", "W", "W", "W", "W"},
+                        {"*", "*", "W", "W", "W", "W", "W", "W"},
+                        {"*", "*", "*", "*", "*", "*", "*", "*"}}
+        );
+
+        assertThat(initialState).isEqualTo(expectedState);
+    }
+
+
 }

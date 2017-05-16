@@ -27,7 +27,16 @@ public class GameState {
     }
 
     public void applyMove(Move move) {
+        MoveAvailabilityChecker availabilityChecker = new MoveAvailabilityChecker(this);
+        if (!availabilityChecker.canMove(move)) {
+            throw new IllegalArgumentException("Move " + move + " not allowed, you nasty player");
+        }
+        availabilityChecker.willCapture(move).forEach(this::flipPosition);
+        board[move.toPosition.rowNumberToFieldIndex()][move.toPosition.columnNameToFieldIndex()] = new Piece(move.pieceColor);
+    }
 
+    private void flipPosition(Position position) {
+        board[position.rowNumberToFieldIndex()][position.columnNameToFieldIndex()].flip();
     }
 
     public Piece valueAt(Position position) {

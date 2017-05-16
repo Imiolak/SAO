@@ -1,9 +1,11 @@
 package agh.sao.reversi.engine.game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static agh.sao.reversi.engine.game.Position.*;
+import static java.util.Collections.emptyList;
 
 /**
  * Created by Maxim on 4/25/2017.
@@ -26,13 +28,17 @@ public class MoveAvailabilityChecker {
     }
 
     public boolean canMove(Move move){
-        boolean canMove = false;
+        return !willCapture(move).isEmpty();
+    }
+
+    public List<Position> willCapture(Move move) {
+        List<Position> willCapture = new ArrayList<>();
         if (isTargetPositionEmpty(move)) {
             for (MoveOpportunity opportunity : moveOpportunities) {
-                canMove = canMove || opportunity.canMove(move);
+                willCapture.addAll(opportunity.willCapture(move));
             }
         }
-        return canMove;
+        return willCapture;
     }
 
     private boolean isTargetPositionEmpty(Move move){
@@ -49,27 +55,35 @@ abstract class MoveOpportunity {
         this.gameState = gameState;
     }
 
-    boolean canMove(Move wantedMove) {
+    Collection<Position> willCapture(Move wantedMove) {
         Position closestNeighbour = neighbour(wantedMove.toPosition);
-        return isClosestNeighbourOpposite(closestNeighbour, wantedMove.pieceColor) && hasMoveColorAtTheEndOfOpposite(closestNeighbour, wantedMove.pieceColor);
+        if (isClosestNeighbourOpposite(closestNeighbour, wantedMove.pieceColor)) {
+            return captureWhenClosing(closestNeighbour, wantedMove.pieceColor);
+        } else {
+            return emptyList();
+        }
     }
 
     private boolean isClosestNeighbourOpposite(Position closestNeighbour, PieceColor moveColor) {
         return closestNeighbour != null && closestNeighbour.isOppositeTo(moveColor, gameState);
     }
 
-    private boolean hasMoveColorAtTheEndOfOpposite(Position closestNeighbour, PieceColor moveColor) {
+    private List<Position> captureWhenClosing(Position closestNeighbour, PieceColor moveColor) {
         Position currentPosition = closestNeighbour;
+        List<Position> willCapture = new ArrayList<>();
+        willCapture.add(closestNeighbour);
         while ((currentPosition = neighbour(currentPosition)) != null) {
             Piece currentPiece = gameState.valueAt(currentPosition);
             if(currentPiece == null){
                 break;
             }
             else if(moveColor.equals(currentPiece.getColor())) {
-                return true;
+                return willCapture;
+            } else {
+                willCapture.add(currentPosition);
             }
         }
-        return false;
+        return emptyList();
     }
 
     abstract Position neighbour(Position position);

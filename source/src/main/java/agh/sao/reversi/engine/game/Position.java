@@ -17,6 +17,10 @@ public class Position {
     final int rowNumber;
     final char columnName;
 
+    public Position(String position) {
+        this(position.charAt(0), Integer.valueOf(String.valueOf(position.charAt(1))));
+    }
+
     Position(char columnName, int rowNumber) {
         if(rowNumber < 1 || rowNumber > 8){
             throw new IllegalArgumentException("Row number can have values 1-8 was - " + rowNumber);
