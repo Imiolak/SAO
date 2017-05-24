@@ -123,5 +123,22 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 ## 3. Software documentation
 
 ## 4. Testing plan
+### 4.1 Initial population
+* 6 strategies - 1 non-parametrized, 5 parametrized
+* each parametrized - 5 different parameter sets
+* 26 singular strategies + 34 randomly mixed multiple strategies
+* 60 strategies in total
+
+### 4.2 Tournament selection
+In each iteration:
+* divide strategies set in groups of 10
+* round-robin games in each group
+* each strategy track its games played and games won
+
+### 4.3 Disturbance
+After each iteration:
+* decide whether to disturb agent based on its winning precentage
+
+### 4.4 Determining winners
 
 ## 5. Results
