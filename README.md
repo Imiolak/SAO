@@ -131,13 +131,14 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 
 ### 4.2 Tournament selection
 In each iteration:
-* divide strategies set in groups of 10
-* round-robin games in each group
-* each strategy track its games played and games won
+    Do 20 times:
+* randomly chose two 10-strategies sets
+* round-robin games in each set
+* two winning strategies populate and together with their child advance to next iteration
 
 ### 4.3 Disturbance
 After each iteration:
-* decide whether to disturb agent based on its winning precentage
+* decide whether to disturb agents based on its winning precentage
 
 ### 4.4 Determining winners
 
