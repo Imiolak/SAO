@@ -12,9 +12,10 @@ import java.util.Scanner;
 
 public class RealPersonPlayer implements IPlayer {
 
-    private final PieceColor playerColor;
+    private PieceColor playerColor;
 
-    public RealPersonPlayer(PieceColor playerColor) {
+    @Override
+    public void setPlayerColor(PieceColor playerColor) {
         this.playerColor = playerColor;
     }
 
@@ -31,5 +32,10 @@ public class RealPersonPlayer implements IPlayer {
         System.out.print("Select move:");
         String position = scanner.next();
         return new Move(playerColor, new Position(position));
+    }
+
+    @Override
+    public IPlayer copy() {
+        return new RealPersonPlayer();
     }
 }

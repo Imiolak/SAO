@@ -11,7 +11,11 @@ import java.util.List;
  */
 public interface IPlayer {
 
+    void setPlayerColor(PieceColor playerColor);
+
     PieceColor getPlayerColor();
 
     Move chooseMoveToPerform(GameState board, List<Move> availableMoves);
+
+    IPlayer copy();
 }

@@ -13,9 +13,11 @@ import java.util.Random;
  * Created by Imiolak on 15-Mar-17.
  */
 public class RandomMovesPlayer implements IPlayer {
-    private final PieceColor playerColor;
 
-    public RandomMovesPlayer(PieceColor playerColor) {
+    private PieceColor playerColor;
+
+    @Override
+    public void setPlayerColor(PieceColor playerColor) {
         this.playerColor = playerColor;
     }
 
@@ -27,5 +29,10 @@ public class RandomMovesPlayer implements IPlayer {
     @Override
     public Move chooseMoveToPerform(GameState board, List<Move> availableMoves) {
         return availableMoves.get(new Random().nextInt(availableMoves.size()));
+    }
+
+    @Override
+    public IPlayer copy() {
+        return new RandomMovesPlayer();
     }
 }
