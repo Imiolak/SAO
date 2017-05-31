@@ -10,11 +10,11 @@ import java.util.Comparator;
 import java.util.Collections;
 
 public class PositionalMovesPlayer implements IPlayer {
-    private final PieceColor playerColor;
     private final int[][] riskBoard;
 
-    public PositionalMovesPlayer(PieceColor playerColor, int a,int b,int c,int d,int e) {
-        this.playerColor = playerColor;
+    private PieceColor playerColor;
+
+    public PositionalMovesPlayer(int a,int b,int c,int d,int e) {
         this.riskBoard = new int[][] { 	{ e, d, c, c, c, c, d, e },
                                         { d, d, b, b, b, b, d, d },
                                         { c, b, a, a, a, a, b, c },
@@ -23,6 +23,11 @@ public class PositionalMovesPlayer implements IPlayer {
                                         { c, b, a, a, a, a, b, c },
                                         { d, d, b, b, b, b, d, d },
                                         { e, d, c, c, c, c, d, e }};
+    }
+
+    @Override
+    public void setPlayerColor(PieceColor playerColor) {
+        this.playerColor = playerColor;
     }
 
     @Override
@@ -46,5 +51,10 @@ public class PositionalMovesPlayer implements IPlayer {
             }
         }).get();
         return move;
+    }
+
+    @Override
+    public IPlayer copy() {
+        return null;
     }
 }
