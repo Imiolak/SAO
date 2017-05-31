@@ -61,6 +61,22 @@ public class GameState {
         return board;
     }
 
+    public String[][] toStringBoard() {
+        String[][] stringBoard = new String[8][8];
+        int i = 0, k = 0;
+        for (Piece[] row : board) {
+            for (Piece value : row) {
+                if (value != null) {
+                    stringBoard[i][k++] = value.toString();
+                } else {
+                    stringBoard[i][k++] = "*";
+                }
+            }
+            i++;
+        }
+        return stringBoard;
+    }
+
     @Override
     public String toString() {
         StringBuilder boardAsString = new StringBuilder();
