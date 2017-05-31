@@ -40,6 +40,10 @@ public class Position {
         return 8 - rowNumber;
     }
 
+    public int getColumnNameToFieldIndex() { return columnNameToFieldIndex(); }
+
+    public int getRowNumberToFieldIndex() { return rowNumberToFieldIndex(); }
+
     boolean isOppositeTo(PieceColor otherColor, GameState field) {
         Piece myPiece = field.valueAt(this);
         return myPiece != null && myPiece.getColor().equals(opposite(otherColor));
