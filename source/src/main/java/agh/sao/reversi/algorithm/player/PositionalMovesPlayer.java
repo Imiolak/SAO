@@ -10,11 +10,52 @@ import java.util.Comparator;
 import java.util.Collections;
 
 public class PositionalMovesPlayer implements IPlayer {
-    private final PieceColor playerColor;
-    private final int[][] riskBoard;
+    private PieceColor playerColor;
+    private int[][] riskBoard;
+    private final int[] riskBoardValues;
 
-    public PositionalMovesPlayer(PieceColor playerColor, int a,int b,int c,int d,int e) {
+    public PositionalMovesPlayer(int a, int b, int c, int d, int e) {
+        this.riskBoardValues = new int[]{a, b, c, d, e};
+        this.makeRiskBoard();
+    }
+
+    @Override
+    public PieceColor getPlayerColor() {
+        return this.playerColor;
+    }
+
+    @Override
+    public void setPlayerColor(PieceColor playerColor) {
         this.playerColor = playerColor;
+    }
+
+    @Override
+    public IPlayer copy() {
+        return new PositionalMovesPlayer( this.riskBoardValues[0]
+                                        , this.riskBoardValues[1]
+                                        , this.riskBoardValues[2]
+                                        , this.riskBoardValues[3]
+                                        , this.riskBoardValues[4]);
+    }
+
+    public int[] getParameters() { return this.riskBoardValues; }
+
+    public void setParameters(int a, int b, int c, int d, int e) {
+        this.riskBoardValues[0] = a;
+        this.riskBoardValues[1] = b;
+        this.riskBoardValues[2] = c;
+        this.riskBoardValues[3] = d;
+        this.riskBoardValues[4] = e;
+        this.makeRiskBoard();
+    }
+
+    private void makeRiskBoard() {
+        int a, b, c, e, d;
+        a = this.riskBoardValues[0];
+        b = this.riskBoardValues[1];
+        c = this.riskBoardValues[2];
+        d = this.riskBoardValues[3];
+        e = this.riskBoardValues[4];
         this.riskBoard = new int[][] { 	{ e, d, c, c, c, c, d, e },
                                         { d, d, b, b, b, b, d, d },
                                         { c, b, a, a, a, a, b, c },
@@ -23,11 +64,6 @@ public class PositionalMovesPlayer implements IPlayer {
                                         { c, b, a, a, a, a, b, c },
                                         { d, d, b, b, b, b, d, d },
                                         { e, d, c, c, c, c, d, e }};
-    }
-
-    @Override
-    public PieceColor getPlayerColor() {
-        return this.playerColor;
     }
 
     private int compareMoves(Move o1, Move o2) {

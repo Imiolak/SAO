@@ -10,15 +10,23 @@ import java.util.Comparator;
 import java.util.Collections;
 
 public class GreedyMovesPlayer implements IPlayer{
-    private final PieceColor playerColor;
+    private PieceColor playerColor;
 
-    public GreedyMovesPlayer(PieceColor playerColor) {
-        this.playerColor = playerColor;
-    }
+    public GreedyMovesPlayer(){}
 
     @Override
     public PieceColor getPlayerColor() {
         return this.playerColor;
+    }
+
+    @Override
+    public void setPlayerColor(PieceColor playerColor) {
+        this.playerColor = playerColor;
+    }
+
+    @Override
+    public IPlayer copy() {
+        return new GreedyMovesPlayer();
     }
 
     private int compareMoves(GameState board, Move o1, Move o2) {
