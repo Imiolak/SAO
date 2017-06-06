@@ -14,6 +14,10 @@ public class RealPersonPlayer implements IPlayer {
 
     private PieceColor playerColor;
 
+    public RealPersonPlayer(PieceColor playerColor) {this.playerColor = playerColor;}
+
+    public RealPersonPlayer(){}
+
     @Override
     public void setPlayerColor(PieceColor playerColor) {
         this.playerColor = playerColor;

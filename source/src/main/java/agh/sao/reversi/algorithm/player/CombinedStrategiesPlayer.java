@@ -7,9 +7,6 @@ import agh.sao.reversi.engine.player.IPlayer;
 
 import java.util.List;
 
-/**
- * Created by Imiolak on 31-May-17.
- */
 public class CombinedStrategiesPlayer implements IPlayer {
 
     private final IPlayer player1;

@@ -13,23 +13,18 @@ public class GreedyMovesPlayer implements IPlayer{
     private PieceColor playerColor;
 
     @Override
-    public void setPlayerColor(PieceColor playerColor) {
-        playerColor = playerColor;
-    }
-
-    @Override
     public PieceColor getPlayerColor() {
         return this.playerColor;
     }
 
-    private int compareMoves(GameState board, Move o1, Move o2) {
-        GameState move1Board = new GameState(board.toStringBoard());
-        GameState move2Board = new GameState(board.toStringBoard());
-        move1Board.applyMove(o1);
-        move2Board.applyMove(o2);
-        int move1Points = this.playerColor == PieceColor.Dark ? move1Board.countDark() : move1Board.countLight();
-        int move2Points = this.playerColor == PieceColor.Dark ? move2Board.countDark() : move2Board.countLight();
-        return move1Points - move2Points;
+    @Override
+    public void setPlayerColor(PieceColor playerColor) {
+        this.playerColor = playerColor;
+    }
+
+    @Override
+    public IPlayer copy() {
+        return new GreedyMovesPlayer();
     }
 
     @Override
@@ -44,8 +39,13 @@ public class GreedyMovesPlayer implements IPlayer{
         return move;
     }
 
-    @Override
-    public IPlayer copy() {
-        return new GreedyMovesPlayer();
+    private int compareMoves(GameState board, Move o1, Move o2) {
+        GameState move1Board = new GameState(board.toStringBoard());
+        GameState move2Board = new GameState(board.toStringBoard());
+        move1Board.applyMove(o1);
+        move2Board.applyMove(o2);
+        int move1Points = this.playerColor == PieceColor.Dark ? move1Board.countDark() : move1Board.countLight();
+        int move2Points = this.playerColor == PieceColor.Dark ? move2Board.countDark() : move2Board.countLight();
+        return move1Points - move2Points;
     }
 }

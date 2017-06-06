@@ -29,6 +29,5 @@ public class StrategySpecimenCrossover {
                     specimen1.getPlayer().getPlayer2()
             ));
         }
-
     }
 }

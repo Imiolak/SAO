@@ -130,16 +130,25 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 * 60 strategies in total
 
 ### 4.2 Tournament selection
+#### 4.2.1 Child and parents succession
 In each iteration:
     Do 20 times:
 * randomly chose two 10-strategies sets
 * round-robin games in each set
 * two winning strategies populate and together with their child advance to next iteration
 
+#### 4.2.2 Only child succession
+In each iteration:
+    Do 60 times:
+* randomly chose two 10-strategies sets
+* round-robin games in each set
+* two winning strategies populate, but only their child advances to next iteration
+
 ### 4.3 Disturbance
 After each iteration:
 * decide whether to disturb agents based on its winning precentage
 
 ### 4.4 Determining winners
+After a set number of iterations a list of all surviving specimen is sorted by win percentage in a descending manner. Should there be any specimen within (subject to change) 5% win rate margin, a second tournament in performed.
 
 ## 5. Results

@@ -9,9 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Imiolak on 15-Mar-17.
- */
 public class RandomMovesPlayer implements IPlayer {
 
     private PieceColor playerColor;
