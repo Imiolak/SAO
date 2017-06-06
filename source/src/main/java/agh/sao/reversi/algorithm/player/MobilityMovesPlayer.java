@@ -11,10 +11,10 @@ import java.lang.Math;
 
 public class MobilityMovesPlayer implements IPlayer{
     private PieceColor playerColor;
-    private int parameter;
+    private double parameter;
     private final AvailableMovesResolver availableMovesResolver;
 
-    public MobilityMovesPlayer(int parameter){
+    public MobilityMovesPlayer(double parameter){
         this.parameter = parameter;
         this.availableMovesResolver = new AvailableMovesResolver();
     }
@@ -34,9 +34,9 @@ public class MobilityMovesPlayer implements IPlayer{
         return new MobilityMovesPlayer(this.parameter);
     }
 
-    public int getParameter() { return this.parameter; }
+    public double getParameter() { return this.parameter; }
 
-    public void setParameter(int parameter) { this.parameter = parameter; }
+    public void setParameter(double parameter) { this.parameter = parameter; }
 
     private int compareMoves(GameState board, Move o1, Move o2) {
         int min1 = 99;

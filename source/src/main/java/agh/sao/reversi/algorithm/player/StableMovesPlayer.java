@@ -13,10 +13,10 @@ import java.util.Random;
 
 public class StableMovesPlayer implements IPlayer{
     private PieceColor playerColor;
-    private int parameter;
+    private double parameter;
     private final IPlayer tmpPl;
 
-    public StableMovesPlayer(int parameter){
+    public StableMovesPlayer(double parameter){
         this.parameter = parameter;
         tmpPl = new GreedyMovesPlayer();
     }
@@ -37,9 +37,9 @@ public class StableMovesPlayer implements IPlayer{
         return new StableMovesPlayer(this.parameter);
     }
 
-    public int getParameter() { return this.parameter; }
+    public double getParameter() { return this.parameter; }
 
-    public void setParameter(int parameter) { this.parameter = parameter; }
+    public void setParameter(double parameter) { this.parameter = parameter; }
 
     private boolean outOfBoard(int X, int Y) {
         if (X < 0 || X>=8 || Y < 0 || Y>=8)

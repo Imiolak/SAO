@@ -1,17 +1,23 @@
 package agh.sao.reversi;
 
-import agh.sao.reversi.algorithm.player.RealPersonPlayer;
-import agh.sao.reversi.engine.game.GameRunner;
-import agh.sao.reversi.engine.game.PieceColor;
-import agh.sao.reversi.engine.player.IPlayer;
+import agh.sao.reversi.tournament.*;
 
 public class Main {
 
     public static void main(String... args) {
-        IPlayer firstPl = new RealPersonPlayer(PieceColor.Light);
-        IPlayer secondPl = new RealPersonPlayer(PieceColor.Dark);
-        GameRunner gameRunner = new GameRunner(secondPl, firstPl);
-        System.out.println("Game ended result - " + gameRunner.runGame());
-    }
 
+        ISpecimenCrossover crossover = new SpecimenCrossover();
+        ITournamentPerformer tournament = new RoundRobinTournamentPerformer();
+
+        Experiment[] experiments = {
+                new Experiment(50, crossover, new OnlyChildSuccessionStratey(), tournament)
+                //new Experiment(50, crossover, new ChildAndParentsSuccessionStrategy(), tournament),
+        };
+        ExperimentPlatform platform = new ExperimentPlatform(
+                new StrategySetCreator(),
+                experiments
+        );
+
+        platform.performExperiments();
+    }
 }

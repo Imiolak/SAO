@@ -15,7 +15,9 @@ public class CornersMovesPlayer implements IPlayer{
     private PieceColor playerColor;
     private final int[][] corners;
 
-    public CornersMovesPlayer(){ corners = new int[][]{{0,0}, {0,8}, {8,0}, {8,8}}; }
+    public CornersMovesPlayer(){
+        corners = new int[][]{{0,0}, {0,8}, {8,0}, {8,8}};
+    }
 
     @Override
     public PieceColor getPlayerColor() {
@@ -32,7 +34,7 @@ public class CornersMovesPlayer implements IPlayer{
         return new CornersMovesPlayer();
     }
 
-    private int getDistBeetwen(int[] pos1, int[] pos2) {
+    private int getDistBeetween(int[] pos1, int[] pos2) {
         return (int) Math.sqrt(Math.pow((pos1[0]-pos2[0]), 2) + Math.pow((pos1[1]-pos2[1]), 2));
     }
 
@@ -42,8 +44,8 @@ public class CornersMovesPlayer implements IPlayer{
         Integer[] move1Dist = new Integer[]{8, 8, 8, 8};
         Integer[] move2Dist = new Integer[]{8, 8, 8, 8};
         for(int i=0; i<4; i++) {
-            move1Dist[i] = getDistBeetwen(move1Cord, this.corners[i]);
-            move2Dist[i] = getDistBeetwen(move2Cord, this.corners[i]);
+            move1Dist[i] = getDistBeetween(move1Cord, this.corners[i]);
+            move2Dist[i] = getDistBeetween(move2Cord, this.corners[i]);
         }
         int move1Distance = (int) Collections.min(Arrays.asList(move1Dist));
         int move2Distance = (int) Collections.min(Arrays.asList(move2Dist));

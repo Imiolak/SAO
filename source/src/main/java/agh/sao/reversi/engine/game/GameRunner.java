@@ -8,9 +8,6 @@ import java.util.Map;
 
 import static agh.sao.reversi.engine.game.PieceColor.Light;
 
-/**
- * Created by Imiolak on 14-Mar-17.
- */
 public class GameRunner {
     private final IPlayer player1;
     private final IPlayer player2;
@@ -25,6 +22,8 @@ public class GameRunner {
     }
 
     public GameResults runGame() {
+        System.out.println("game");
+
         initializeGame();
         gameLoop();
         return new GameResults(decideWinner());
@@ -65,13 +64,10 @@ public class GameRunner {
                 Move move = playerToMove.chooseMoveToPerform(this.gameState, availableMoves);
                 this.gameState.applyMove(move);
             }
-
         }
-
     }
 
     private boolean gameEndConditionMet(Map<PieceColor, Boolean> lastSkipped) {
         return !(lastSkipped.get(player1.getPlayerColor()) && lastSkipped.get(player2.getPlayerColor()));
     }
-
 }

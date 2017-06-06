@@ -4,14 +4,12 @@ import agh.sao.reversi.algorithm.player.CombinedStrategiesPlayer;
 
 import java.util.Random;
 
-/**
- * Created by Imiolak on 31-May-17.
- */
-public class StrategySpecimenCrossover {
+public class SpecimenCrossover implements ISpecimenCrossover {
 
+    @Override
     public StrategySpecimen doCrossover(StrategySpecimen specimen1, StrategySpecimen specimen2) {
-
         Random rnd = new Random();
+
         int strategySwitchPoint = rnd.nextDouble() < 0.5
                 ? specimen1.getPlayer().getStrategySwitchPoint()
                 : specimen2.getPlayer().getStrategySwitchPoint();

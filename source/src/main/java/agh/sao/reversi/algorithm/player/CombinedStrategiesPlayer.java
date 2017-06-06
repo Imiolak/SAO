@@ -55,6 +55,11 @@ public class CombinedStrategiesPlayer implements IPlayer {
 
     @Override
     public IPlayer copy() {
-        return new CombinedStrategiesPlayer(player1.copy(), strategySwitchPoint, player2.copy());
+        if (player2 != null) {
+            return new CombinedStrategiesPlayer(player1.copy(), strategySwitchPoint, player2.copy());
+        }
+        else {
+            return new CombinedStrategiesPlayer(player1.copy(), strategySwitchPoint, null);
+        }
     }
 }

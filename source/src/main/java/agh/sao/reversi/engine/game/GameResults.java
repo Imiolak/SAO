@@ -7,9 +7,13 @@ import agh.sao.reversi.engine.player.IPlayer;
  */
 public class GameResults {
 
-    IPlayer winner;
+    private IPlayer winner;
 
-    GameResults(IPlayer winner) {
+    public GameResults(IPlayer winner) {
         this.winner = winner;
+    }
+
+    public IPlayer getWinner() {
+        return winner;
     }
 }
