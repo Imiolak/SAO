@@ -42,9 +42,9 @@ public class StableMovesPlayer implements IPlayer{
     public void setParameter(double parameter) { this.parameter = parameter; }
 
     private boolean outOfBoard(int X, int Y) {
-        if (X < 0 || X>=8 || Y < 0 || Y>=8)
-            return false;
-        return true;
+        if (X < 0 || X>7 || Y < 0 || Y>7)
+            return true;
+        return false;
     }
 
     private List<int[]> getAllDirectionsCords(Move o) {
@@ -76,8 +76,9 @@ public class StableMovesPlayer implements IPlayer{
         List<int[]> cords = getAllDirectionsCords(o);
         if(cords.size() < 1) return false;
         for(int[] cord : cords) {
-            if(board.valueAt(cord[0], cord[1]) == null)
+            if(board.valueAt(cord[0], cord[1]) == null) {
                 return false;
+            }
         }
         return true;
     }
@@ -86,9 +87,11 @@ public class StableMovesPlayer implements IPlayer{
     public Move chooseMoveToPerform(GameState board, List<Move> availableMoves) {
         Collections.shuffle(availableMoves);
         if(Math.random() <= this.parameter) {
-            for(Move o : availableMoves)
-                if(isStable(board, o))
+            for(Move o : availableMoves) {
+                if (isStable(board, o)){
                     return o;
+                }
+            }
         }
         else {
             return tmpPl.chooseMoveToPerform(board, availableMoves);

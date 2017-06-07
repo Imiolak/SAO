@@ -63,8 +63,9 @@ public class GameState {
 
     public String[][] toStringBoard() {
         String[][] stringBoard = new String[8][8];
-        int i = 0, k = 0;
+        int i = 0;
         for (Piece[] row : board) {
+            int k = 0;
             for (Piece value : row) {
                 if (value != null) {
                     stringBoard[i][k++] = value.toString();
@@ -111,7 +112,7 @@ public class GameState {
         int count = 0;
         for (Piece[] pieces : board)
             for (Piece piece : pieces)
-                if (piece.getColor() == PieceColor.Dark)
+                if (piece != null && piece.getColor() == PieceColor.Dark)
                     count++;
         return count;
     }
@@ -120,7 +121,7 @@ public class GameState {
         int count = 0;
         for (Piece[] pieces : board)
             for (Piece piece : pieces)
-                if (piece.getColor() == PieceColor.Light)
+                if (piece != null && piece.getColor() == PieceColor.Light)
                     count++;
         return count;
     }

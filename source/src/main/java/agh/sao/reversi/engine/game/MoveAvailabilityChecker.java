@@ -75,7 +75,7 @@ abstract class MoveOpportunity {
         while ((currentPosition = neighbour(currentPosition)) != null) {
             Piece currentPiece = gameState.valueAt(currentPosition);
             if(currentPiece == null){
-                break;
+                return emptyList();
             }
             else if(moveColor.equals(currentPiece.getColor())) {
                 return willCapture;

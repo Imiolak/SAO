@@ -16,4 +16,9 @@ public class GameResults {
     public IPlayer getWinner() {
         return winner;
     }
+
+    @Override
+    public String toString(){
+        return "Winner: " + winner;
+    }
 }

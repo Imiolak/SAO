@@ -40,6 +40,10 @@ public class CombinedStrategiesPlayer implements IPlayer {
 
     @Override
     public void setPlayerColor(PieceColor playerColor) {
+        player1.setPlayerColor(playerColor);
+        if (player2 != null) {
+            player2.setPlayerColor(playerColor);
+        }
         this.playerColor = playerColor;
     }
 
@@ -56,7 +60,12 @@ public class CombinedStrategiesPlayer implements IPlayer {
         } else if (performedMoves < strategySwitchPoint) {
             move = player1.chooseMoveToPerform(board, availableMoves);
         } else {
-            move = player2.chooseMoveToPerform(board, availableMoves);
+            //TODO null pointer here
+            if (player2 != null) {
+                move = player2.chooseMoveToPerform(board, availableMoves);
+            } else {
+                move = player1.chooseMoveToPerform(board, availableMoves);
+            }
         }
         performedMoves++;
 

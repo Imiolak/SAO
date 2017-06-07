@@ -10,7 +10,7 @@ public class Main {
         ITournamentPerformer tournament = new RoundRobinTournamentPerformer();
 
         Experiment[] experiments = {
-                new Experiment(50, crossover, new OnlyChildSuccessionStratey(), tournament)
+                new Experiment(10, crossover, new OnlyChildSuccessionStratey(), tournament)
                 //new Experiment(50, crossover, new ChildAndParentsSuccessionStrategy(), tournament),
         };
         ExperimentPlatform platform = new ExperimentPlatform(

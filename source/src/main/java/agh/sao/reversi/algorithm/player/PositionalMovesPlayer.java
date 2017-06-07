@@ -74,8 +74,8 @@ public class PositionalMovesPlayer implements IPlayer {
     }
 
     private int compareMoves(Move o1, Move o2) {
-        int risk1Move = this.riskBoard[o1.toPosition.getRowNumberToFieldIndex()-1][o1.toPosition.getColumnNameToFieldIndex()];
-        int risk2Move = this.riskBoard[o2.toPosition.getRowNumberToFieldIndex()-1][o2.toPosition.getColumnNameToFieldIndex()];
+        int risk1Move = this.riskBoard[o1.toPosition.getRowNumberToFieldIndex()][o1.toPosition.getColumnNameToFieldIndex()];
+        int risk2Move = this.riskBoard[o2.toPosition.getRowNumberToFieldIndex()][o2.toPosition.getColumnNameToFieldIndex()];
         return risk1Move - risk2Move;
     }
 
