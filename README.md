@@ -1,7 +1,8 @@
 # Reversi (aka Othello)
 
+LOGO AGH I JAKIŚ WSTĘP
 ## 1. State of the art
-LOGO AGH I INNY BULSZIT
+co tutaj?
 
 ## 2. Problem definition
 
@@ -74,8 +75,7 @@ The aim of this project is to autmate the process of finding the optimal strateg
     Value set - { 0, 1, 2, .. , 19 } - 0 indicates that only strategt 1 should be used throughout the game
     * strategy2 - strategy to use after changeCondigion in met
     
-### 2.4 Problem solving proposition
-### coś z solving ma być
+### 2.4 Problem solving proposition - coś z solving ma być
 #### 2.4.1 Model
 Each strategy will be represented as an agent containing to following properties:
 * gamesPlayed [int] - number of games played by the stratgy agent
@@ -90,8 +90,7 @@ Each strategy will be represented as an agent containing to following properties
 * 26 singular strategies + 34 randomly mixed multiple strategies
 * 60 strategies in total
 
-#### 2.4.3 Agent "mutation"
-#### mutation mieliśmy uyżyć
+#### 2.4.3 Agent "mutation" - mutation mieliśmy uyżyć
 If at any point disturbance of agent's strategies is to be performed, a decision tree determines the details of the disturbance. The decistion tree requires the following parameters:
 * disturbEarlyGameStrategyChance
 * replaceEarlyGameStrategyChance
