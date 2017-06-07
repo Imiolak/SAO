@@ -2,11 +2,17 @@
 
 ## 1. State of the art
 * https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
+  * Application to play Reversi. Genetic algorithms to moves. Each player makes random moves. Genetic algorith to search best moves in own move's history. Different depth search. (Reversi on 10x10 board)
 * http://www.xiaotu.com/pub/ChonS05a.pdf
+  * URL not working
 * http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
+  * Playing Reversi also with Genetic Algorithms. Main purpose, show that learn player (choos) from large "strategies" set is better than from small one.
 * http://nn.cs.utexas.edu/downloads/papers/moriarty.discovering.pdf
+  * Develop new strategies to play Othello based on artificial evolution of neural network. New strategies play against random-moves and αβ-search. Neural network quickly learn positional and mobility strategies.
 * http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.1746&rep=rep1&type=pdf
+  * Note briefly describing LOGISTELLO, one of the today's strongest Othello program.
 * https://skatgame.net/mburo/ps/compoth.pdf
+  * This article has shown how Othello programs evolved from classic hand-tuned to sophisticated learning systems which have surpassed human playing strength.
 
 ## 2. Problem definition
 
@@ -32,6 +38,7 @@ The aim of this project is to autmate the process of finding the optimal strateg
 
 #### 2.3.2. Parametrized
 1. Stable discs - aims to capture squares that can't be recaptured
+    
     Parameters:
     * stable-disk-weight - capture stable disk or capture something that yields more points
     
@@ -40,12 +47,14 @@ The aim of this project is to autmate the process of finding the optimal strateg
     Value step - 0.1
 
 1. Corners - aims to capture board corners
+    
     Parameters:
     * number-of-corners-to-capture
     
     Value set - {1, 2, 3, 4}
 
 1. Positional - based on risk map, aims to capture low-risk squares and aviod high-risk squares
+    
     Parameters:
     * risk-map - array of 5 integers - risk value for each region
         
@@ -54,6 +63,7 @@ The aim of this project is to autmate the process of finding the optimal strateg
     <img src="docs/img/risk_zones.gif">
 
 1. Mobility - aims to make such moves that maximize number of your moves and minimize number of opponent's moves
+    
     Parameters:
     * maximize - decide whether to maximize self moves or minimize opponent's moves
     
@@ -62,6 +72,7 @@ The aim of this project is to autmate the process of finding the optimal strateg
     Value step - 0.1
 
 1. Mixed strategy - used one strategy at first, changes to another strategy when condition is met
+    
     Parameters:
     * strategy1 - strategy to use at the beginning of the game
     * changeCondition - number of moves to make before changing strategy
@@ -79,6 +90,10 @@ Each strategy will be represented as an agent containing to following properties
 * lateGameStrategy [strategy] - strategy that should be used when {strategySwitchPoints} moves are made
 
 #### 2.4.2 Initial population
+* 6 strategies - 1 non-parametrized, 5 parametrized
+* each parametrized - 5 different parameter sets
+* 26 singular strategies + 34 randomly mixed multiple strategies
+* 60 strategies in total
 
 #### 2.4.3 Agent disturbance
 If at any point disturbance of agent's strategies is to be performed, a decision tree determines the details of the disturbance. The decistion tree requires the following parameters:
@@ -124,10 +139,7 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 
 ## 4. Testing plan
 ### 4.1 Initial population
-* 6 strategies - 1 non-parametrized, 5 parametrized
-* each parametrized - 5 different parameter sets
-* 26 singular strategies + 34 randomly mixed multiple strategies
-* 60 strategies in total
+[Initial population same as in 2.4.2](#2.4.2-initial-population)
 
 ### 4.2 Tournament selection
 #### 4.2.1 Child and parents succession
