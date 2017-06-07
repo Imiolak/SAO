@@ -63,4 +63,9 @@ public class CornersMovesPlayer implements IPlayer{
         }).get();
         return move;
     }
+
+    @Override
+    public String toString() {
+        return "corners";
+    }
 }

@@ -106,4 +106,14 @@ public class MobilityMovesPlayer implements IPlayer{
             return move;
         }
     }
+
+    public static double getRandomParameterValue() {
+        Random rng = new Random();
+        return rng.nextDouble();
+    }
+
+    @Override
+    public String toString() {
+        return "mobility" + parameter;
+    }
 }
