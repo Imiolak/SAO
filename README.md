@@ -1,18 +1,7 @@
 # Reversi (aka Othello)
 
 ## 1. State of the art
-* https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
-  * Application to play Reversi. Genetic algorithms to moves. Each player makes random moves. Genetic algorith to search best moves in own move's history. Different depth search. (Reversi on 10x10 board)
-* http://www.xiaotu.com/pub/ChonS05a.pdf
-  * URL not working
-* http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
-  * Playing Reversi also with Genetic Algorithms. Main purpose, show that learn player (choos) from large "strategies" set is better than from small one.
-* http://nn.cs.utexas.edu/downloads/papers/moriarty.discovering.pdf
-  * Develop new strategies to play Othello based on artificial evolution of neural network. New strategies play against random-moves and αβ-search. Neural network quickly learn positional and mobility strategies.
-* http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.1746&rep=rep1&type=pdf
-  * Note briefly describing LOGISTELLO, one of the today's strongest Othello program.
-* https://skatgame.net/mburo/ps/compoth.pdf
-  * This article has shown how Othello programs evolved from classic hand-tuned to sophisticated learning systems which have surpassed human playing strength.
+LOGO AGH I INNY BULSZIT
 
 ## 2. Problem definition
 
@@ -20,6 +9,7 @@
 Reversi is a two-player strategy board game played with pieces (or disks), which are light on one side and dark on the other. Each player has one color assigned to him. The goal of the game is to have the majority of disks turned to display your color when the game ends. Reversi rules are as follows:
 * game is played on a 8x8 board
 * game starts with two light and two dark pieces on board, positioned in the center, see image below:
+
  <img src="docs/img/plan.png">
 
 * dark player is the first to move
@@ -45,6 +35,10 @@ The aim of this project is to autmate the process of finding the optimal strateg
     Value range - [0, 1] - 1 always capture stable, 0 always capture for points
     
     Value step - 0.1
+
+    <img src="docs/img/stability.png">
+
+    A, B, C - are stable fields for white disc.
 
 1. Corners - aims to capture board corners
     
@@ -80,7 +74,8 @@ The aim of this project is to autmate the process of finding the optimal strateg
     Value set - { 0, 1, 2, .. , 19 } - 0 indicates that only strategt 1 should be used throughout the game
     * strategy2 - strategy to use after changeCondigion in met
     
-### 2.4 Problem resolution proposition
+### 2.4 Problem solving proposition
+### coś z solving ma być
 #### 2.4.1 Model
 Each strategy will be represented as an agent containing to following properties:
 * gamesPlayed [int] - number of games played by the stratgy agent
@@ -95,7 +90,8 @@ Each strategy will be represented as an agent containing to following properties
 * 26 singular strategies + 34 randomly mixed multiple strategies
 * 60 strategies in total
 
-#### 2.4.3 Agent disturbance
+#### 2.4.3 Agent "mutation"
+#### mutation mieliśmy uyżyć
 If at any point disturbance of agent's strategies is to be performed, a decision tree determines the details of the disturbance. The decistion tree requires the following parameters:
 * disturbEarlyGameStrategyChance
 * replaceEarlyGameStrategyChance
@@ -140,10 +136,15 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 Software code is entirely written in Java and is divided into 3 packages - engine, algorithm, and tournament. Engine package contains tools for playing Reversi games between two playes. Abstraction for player algorithms is also in engine package. Algorithm package contains concrete implementations of player algorithms. Tournament package contains platform for performing tournaments to determine the best of the strategies implemented in algorithm package.
 
 ### 3.2 Game engine
+The game engine can use various alghoritms to play. The game state is computing using board evaluation.
 
 ### 3.3 Algorithms
+Alghorithms are strategies, which decide how to play (choos moves to play). Also there is one alghoritm which can play two different strategies. First one in some determine number of moove, and later the second one.
+
+Algorithms also can mutate some strategies, change their parameters or even combine two diferent one.
 
 ### 3.4 Tournament engine
+The tournament engine can compete players against each others and select the best players of tournament.
 
 ## 4. Testing plan
 ### 4.1 Initial population
@@ -172,3 +173,17 @@ After each iteration:
 After a set number of iterations a list of all surviving specimen is sorted by win percentage in a descending manner. Should there be any specimen within (subject to change) 5% win rate margin, a second tournament in performed.
 
 ## 5. Results
+
+## 6. Sources/Bibliography
+* Application to play Reversi. Genetic algorithms to moves. Each player makes random moves. Genetic algorith to search best moves in own move's history. Different depth search. (Reversi on 10x10 board)
+  * https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
+* Article about learn coupyter Othello strategies without expert knowledge. Using two ways, neural network and min-max search alghoritm. Individual neural network discoverd variuos game-playing strategies, e.g. positional, and later mobility (after 1000 generations).
+  * http://www.xiaotu.com/pub/ChonS05a.pdf
+* Playing Reversi also with Genetic Algorithms. Main purpose, show that learn player (choos) from large "strategies" set is better than from small one.
+  * http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
+* Develop new strategies to play Othello based on artificial evolution of neural network. New strategies play against random-moves and αβ-search. Neural network quickly learn positional and mobility strategies.
+  * http://nn.cs.utexas.edu/downloads/papers/moriarty.discovering.pdf
+* Note briefly describing LOGISTELLO, one of the today's strongest Othello program.
+  * http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.1746&rep=rep1&type=pdf
+* This article has shown how Othello programs evolved from classic hand-tuned to sophisticated learning systems which have surpassed human playing strength.
+  * https://skatgame.net/mburo/ps/compoth.pdf
