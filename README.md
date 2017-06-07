@@ -139,7 +139,7 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 
 ## 4. Testing plan
 ### 4.1 Initial population
-[Initial population same as in 2.4.2](#2.4.2-initial-population)
+[Initial population same as in 2.4.2](#2-4-2-initial-population)
 
 ### 4.2 Tournament selection
 #### 4.2.1 Child and parents succession
