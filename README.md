@@ -1,18 +1,18 @@
 # Reversi (aka Othello)
 
 ## 1. State of the art
-* Application to play Reversi. Genetic algorithms to moves. Each player makes random moves. Genetic algorith to search best moves in own move's history. Different depth search. (Reversi on 10x10 board)
-  * https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
-* URL not working
-  * http://www.xiaotu.com/pub/ChonS05a.pdf
-* Playing Reversi also with Genetic Algorithms. Main purpose, show that learn player (choos) from large "strategies" set is better than from small one.
-  * http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
-* Develop new strategies to play Othello based on artificial evolution of neural network. New strategies play against random-moves and αβ-search. Neural network quickly learn positional and mobility strategies.
-  * http://nn.cs.utexas.edu/downloads/papers/moriarty.discovering.pdf
-* Note briefly describing LOGISTELLO, one of the today's strongest Othello program.
-  * http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.1746&rep=rep1&type=pdf
-* This article has shown how Othello programs evolved from classic hand-tuned to sophisticated learning systems which have surpassed human playing strength.
-  * https://skatgame.net/mburo/ps/compoth.pdf
+* https://www.lri.fr/~hansen/proceedings/2011/GECCO/companion/p739.pdf
+  * Application to play Reversi. Genetic algorithms to moves. Each player makes random moves. Genetic algorith to search best moves in own move's history. Different depth search. (Reversi on 10x10 board)
+* http://www.xiaotu.com/pub/ChonS05a.pdf
+  * URL not working
+* http://gamelearninglab.nctu.edu.tw/ctsun/GA%20learning%20in%20game%20playing.pdf
+  * Playing Reversi also with Genetic Algorithms. Main purpose, show that learn player (choos) from large "strategies" set is better than from small one.
+* http://nn.cs.utexas.edu/downloads/papers/moriarty.discovering.pdf
+  * Develop new strategies to play Othello based on artificial evolution of neural network. New strategies play against random-moves and αβ-search. Neural network quickly learn positional and mobility strategies.
+* http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.1746&rep=rep1&type=pdf
+  * Note briefly describing LOGISTELLO, one of the today's strongest Othello program.
+* https://skatgame.net/mburo/ps/compoth.pdf
+  * This article has shown how Othello programs evolved from classic hand-tuned to sophisticated learning systems which have surpassed human playing strength.
 
 ## 2. Problem definition
 
@@ -90,8 +90,8 @@ Each strategy will be represented as an agent containing to following properties
 * lateGameStrategy [strategy] - strategy that should be used when {strategySwitchPoints} moves are made
 
 #### 2.4.2 Initial population
-* 6 strategies - 1 non-parametrized, 5 parametrized
-* each parametrized - 5 different parameter sets
+* 5 strategies - 2 non-parametrized, 3 parametrized
+* each parametrized - 8 different parameter sets
 * 26 singular strategies + 34 randomly mixed multiple strategies
 * 60 strategies in total
 
@@ -136,6 +136,14 @@ DisturbAgentsStrategies(disturbEarlyGameStrategyChance, replaceEarlyGameStrategy
 ```
 
 ## 3. Software documentation
+### 3.1 Structure
+Software code is entirely written in Java and is divided into 3 packages - engine, algorithm, and tournament. Engine package contains tools for playing Reversi games between two playes. Abstraction for player algorithms is also in engine package. Algorithm package contains concrete implementations of player algorithms. Tournament package contains platform for performing tournaments to determine the best of the strategies implemented in algorithm package.
+
+### 3.2 Game engine
+
+### 3.3 Algorithms
+
+### 3.4 Tournament engine
 
 ## 4. Testing plan
 ### 4.1 Initial population
