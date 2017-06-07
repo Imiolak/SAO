@@ -48,4 +48,9 @@ public class GreedyMovesPlayer implements IPlayer{
         int move2Points = this.playerColor == PieceColor.Dark ? move2Board.countDark() : move2Board.countLight();
         return move1Points - move2Points;
     }
+
+    @Override
+    public String toString() {
+        return "greedy";
+    }
 }

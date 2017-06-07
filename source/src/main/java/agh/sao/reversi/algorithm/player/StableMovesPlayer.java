@@ -95,4 +95,14 @@ public class StableMovesPlayer implements IPlayer{
         }
         return availableMoves.get(new Random().nextInt(availableMoves.size()));
     }
+
+    public static double getRandomParameterValue() {
+        Random rng = new Random();
+        return rng.nextDouble();
+    }
+
+    @Override
+    public String toString() {
+        return "stable" + parameter;
+    }
 }

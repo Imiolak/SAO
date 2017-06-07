@@ -16,6 +16,10 @@ public class CombinedStrategiesPlayer implements IPlayer {
     private int performedMoves = 0;
     private PieceColor playerColor;
 
+    public CombinedStrategiesPlayer(IPlayer player1) {
+        this(player1, 0, null);
+    }
+
     public CombinedStrategiesPlayer(IPlayer player1, int strategySwitchPoint, IPlayer player2) {
         this.player1 = player1;
         this.strategySwitchPoint = strategySwitchPoint;
@@ -46,11 +50,17 @@ public class CombinedStrategiesPlayer implements IPlayer {
 
     @Override
     public Move chooseMoveToPerform(GameState board, List<Move> availableMoves) {
-        if (strategySwitchPoint == 0 && performedMoves < strategySwitchPoint) {
-            return player1.chooseMoveToPerform(board, availableMoves);
+        Move move;
+        if (strategySwitchPoint == 0) {
+            move = player1.chooseMoveToPerform(board, availableMoves);
+        } else if (performedMoves < strategySwitchPoint) {
+            move = player1.chooseMoveToPerform(board, availableMoves);
         } else {
-            return player2.chooseMoveToPerform(board, availableMoves);
+            move = player2.chooseMoveToPerform(board, availableMoves);
         }
+        performedMoves++;
+
+        return move;
     }
 
     @Override
@@ -59,7 +69,15 @@ public class CombinedStrategiesPlayer implements IPlayer {
             return new CombinedStrategiesPlayer(player1.copy(), strategySwitchPoint, player2.copy());
         }
         else {
-            return new CombinedStrategiesPlayer(player1.copy(), strategySwitchPoint, null);
+            return new CombinedStrategiesPlayer(player1.copy());
         }
+    }
+
+    @Override
+    public String toString() {
+        if (player2 == null) {
+            return player1.toString();
+        }
+        return player1.toString() + "-" + strategySwitchPoint + "-" + player2.toString();
     }
 }

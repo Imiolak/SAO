@@ -7,6 +7,7 @@ import agh.sao.reversi.engine.player.IPlayer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RoundRobinTournamentPerformer implements ITournamentPerformer {
@@ -23,7 +24,8 @@ public class RoundRobinTournamentPerformer implements ITournamentPerformer {
 
     @Override
     public void performTournament() {
-        StrategySpecimen[] specimens = (StrategySpecimen[]) winsBySpecimen.keySet().toArray();
+        StrategySpecimen[] specimens = winsBySpecimen.keySet()
+                .toArray(new StrategySpecimen[winsBySpecimen.keySet().size()]);
 
         for (int i = 0; i < specimens.length - 1; i++) {
             for (int j = i + 1; j < specimens.length; j++) {
@@ -35,13 +37,13 @@ public class RoundRobinTournamentPerformer implements ITournamentPerformer {
 
     @Override
     public StrategySpecimen[] getTopPerformers(int numberOfTopPerformers) {
-        return (StrategySpecimen[]) winsBySpecimen.entrySet()
+        return winsBySpecimen.entrySet()
                 .stream()
                 .sorted((o1, o2) -> Double.compare(o2.getKey().getWinningPercentage(), o1.getKey().getWinningPercentage()))
                 .limit(numberOfTopPerformers)
-                .map(Map.Entry::getValue)
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList())
-                .toArray();
+                .toArray(new StrategySpecimen[numberOfTopPerformers]);
     }
 
     private void performMatch(StrategySpecimen darkPiecesPlayer, StrategySpecimen lightPiecesPlayer) {

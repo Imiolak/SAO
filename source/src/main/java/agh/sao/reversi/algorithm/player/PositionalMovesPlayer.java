@@ -3,17 +3,23 @@ package agh.sao.reversi.algorithm.player;
 import agh.sao.reversi.engine.game.GameState;
 import agh.sao.reversi.engine.game.Move;
 import agh.sao.reversi.engine.game.PieceColor;
+import agh.sao.reversi.engine.game.Position;
 import agh.sao.reversi.engine.player.IPlayer;
 
 import java.util.List;
 import java.util.Comparator;
 import java.util.Collections;
+import java.util.Random;
 
 public class PositionalMovesPlayer implements IPlayer {
 
     private PieceColor playerColor;
     private int[][] riskBoard;
     private final int[] riskBoardValues;
+
+    public PositionalMovesPlayer(int[] params) {
+        this(params[0], params[1], params[2], params[3], params[4]);
+    }
 
     public PositionalMovesPlayer(int a, int b, int c, int d, int e) {
         this.riskBoardValues = new int[]{a, b, c, d, e};
@@ -83,5 +89,22 @@ public class PositionalMovesPlayer implements IPlayer {
             }
         }).get();
         return move;
+    }
+
+    public static int[] getRandomParameterValues() {
+        Random rng = new Random();
+        return new int[] {
+                rng.nextInt(100),
+                rng.nextInt(100),
+                rng.nextInt(100),
+                rng.nextInt(100),
+                rng.nextInt(100)
+        };
+    }
+
+    @Override
+    public String toString() {
+        return "positional" + riskBoardValues[0] + "," + riskBoardValues[1] + "," + riskBoardValues[2] + ","
+                + riskBoardValues[3] + "," + riskBoardValues[4];
     }
 }

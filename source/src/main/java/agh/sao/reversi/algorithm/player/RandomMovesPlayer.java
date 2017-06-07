@@ -32,4 +32,9 @@ public class RandomMovesPlayer implements IPlayer {
     public IPlayer copy() {
         return new RandomMovesPlayer();
     }
+
+    @Override
+    public String toString() {
+        return "random";
+    }
 }
