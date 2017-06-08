@@ -1,8 +1,11 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 repositories {
     jcenter()
 }
+
+mainClassName = "agh/sao/reversi/Main"
 
 dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '19.0'

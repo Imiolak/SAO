@@ -114,6 +114,6 @@ public class MobilityMovesPlayer implements IPlayer{
 
     @Override
     public String toString() {
-        return "mobility" + parameter;
+        return "mobility" + String.format("%.2f", parameter);
     }
 }

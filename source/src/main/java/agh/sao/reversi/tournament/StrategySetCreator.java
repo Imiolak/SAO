@@ -12,29 +12,39 @@ public class StrategySetCreator {
 
     public List<CombinedStrategiesPlayer> createInitialStrategyBase() {
         Random rng = new Random();
-        List<IPlayer> playerBase = new ArrayList<>();
         List<CombinedStrategiesPlayer> players = new ArrayList<>();
 
-        playerBase.add(new GreedyMovesPlayer());
-        playerBase.add(new CornersMovesPlayer());
-        for (int i = 0; i < 8; i++) {
-            playerBase.add(new MobilityMovesPlayer(MobilityMovesPlayer.getRandomParameterValue()));
-            playerBase.add(new StableMovesPlayer(StableMovesPlayer.getRandomParameterValue()));
-            playerBase.add(new PositionalMovesPlayer(PositionalMovesPlayer.getRandomParameterValues()));
+        players.add(new CombinedStrategiesPlayer(new GreedyMovesPlayer()));
+        players.add(new CombinedStrategiesPlayer(new CornersMovesPlayer()));
+        players.add(new CombinedStrategiesPlayer(new MobilityMovesPlayer(1.0)));
+        players.add(new CombinedStrategiesPlayer(new StableMovesPlayer(1.0)));
+        for (int i = 0; i < 5; i++) {
+            players.add(new CombinedStrategiesPlayer(new MobilityMovesPlayer(MobilityMovesPlayer.getRandomParameterValue())));
+            players.add(new CombinedStrategiesPlayer(new StableMovesPlayer(StableMovesPlayer.getRandomParameterValue())));
+        }
+        for (int i = 0; i < 12; i++) {
+            players.add(new CombinedStrategiesPlayer(new PositionalMovesPlayer(PositionalMovesPlayer.getRandomParameterValues())));
         }
 
-        players.addAll(playerBase.stream()
-                .map(basePlayer -> new CombinedStrategiesPlayer(basePlayer.copy()))
-                .collect(Collectors.toList()));
-
         for (int i = 0; i < 34; i++) {
-            IPlayer player1 = playerBase.get(rng.nextInt(playerBase.size()));
-            int strategySwitchPoint = rng.nextInt(20);
-            IPlayer player2 = playerBase.get(rng.nextInt(playerBase.size()));
+            IPlayer player1 = getRandomPlayer(rng);
+            int strategySwitchPoint = rng.nextInt(20) + 5;
+            IPlayer player2 = getRandomPlayer(rng);
 
             players.add(new CombinedStrategiesPlayer(player1.copy(), strategySwitchPoint, player2.copy()));
         }
 
         return players;
+    }
+
+    private IPlayer getRandomPlayer(Random rng) {
+        switch (rng.nextInt(5)) {
+            case 0: return new GreedyMovesPlayer();
+            case 1: return new CornersMovesPlayer();
+            case 2: return new MobilityMovesPlayer(MobilityMovesPlayer.getRandomParameterValue());
+            case 3: return new StableMovesPlayer(StableMovesPlayer.getRandomParameterValue());
+            case 4: return new PositionalMovesPlayer(PositionalMovesPlayer.getRandomParameterValues());
+        }
+        return null;
     }
 }

@@ -19,13 +19,17 @@ public class ExperimentPlatform {
     }
 
     public void performExperiments() {
+        performExperiments(false);
+    }
+
+    public void performExperiments(boolean debug) {
         List<CombinedStrategiesPlayer> strategySet = strategySetCreator.createInitialStrategyBase();
 
         for (Experiment experiment : this.experiments) {
             List<StrategySpecimen> specimenPopulation = createSpecimensFromCopiesOfStrategies(strategySet);
             experiment.injectInitialPopulation(specimenPopulation);
 
-            experiment.performAndWriteResults();
+            experiment.performAndWriteResults(debug);
         }
     }
 

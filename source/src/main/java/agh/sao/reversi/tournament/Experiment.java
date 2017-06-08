@@ -3,6 +3,7 @@ package agh.sao.reversi.tournament;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -11,17 +12,19 @@ import java.util.stream.Collectors;
 
 public class Experiment {
 
-    private final String pathToResultsFolder = "../../results/";
+    private final String pathToResultsFolder = "../results/";
     private final int iterations;
+    private final int tournamentSize;
     private final ISpecimenCrossover specimenCrossover;
     private final ISpecimenSuccessionStrategy specimenSuccession;
     private final ITournamentPerformer tournamentPerformer;
 
     private List<StrategySpecimen> population;
 
-    public Experiment(int iterations, ISpecimenCrossover specimenCrossover,
+    public Experiment(int iterations, int tournamentSize, ISpecimenCrossover specimenCrossover,
                       ISpecimenSuccessionStrategy specimenSuccession, ITournamentPerformer tournamentPerformer) {
         this.iterations = iterations;
+        this.tournamentSize = tournamentSize;
         this.specimenCrossover = specimenCrossover;
         this.specimenSuccession = specimenSuccession;
         this.tournamentPerformer = tournamentPerformer;
@@ -46,7 +49,7 @@ public class Experiment {
             for (int t = 0; t < population.size() / specimenSuccession.getNumberOfSpecimensAdvancingInEachStep(); t++) {
                 System.out.println("tournament " + t);
 
-                StrategySpecimen[] tournamentCompetitors = PopulationUtils.getRandomSpecimens(population, 10);
+                StrategySpecimen[] tournamentCompetitors = PopulationUtils.getRandomSpecimens(population, tournamentSize);
                 tournamentPerformer.setCompetingStrategies(tournamentCompetitors);
                 tournamentPerformer.performTournament();
                 StrategySpecimen[] parentSpecimens = tournamentPerformer.getTopPerformers(2);
@@ -70,6 +73,8 @@ public class Experiment {
         }
 
         for (int t = 0; t < population.size(); t++) {
+            System.out.println("tournament " + t);
+
             StrategySpecimen[] tournamentCompetitors = PopulationUtils.getRandomSpecimens(population, 10);
             tournamentPerformer.setCompetingStrategies(tournamentCompetitors);
             tournamentPerformer.performTournament();
@@ -94,15 +99,17 @@ public class Experiment {
 
                 writer.write(specimen.getResultsString() + "\n");
             }
+
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private File createResultsFolder() {
-        String fullPathToResultsFolder = pathToResultsFolder + new Date().toString();
+        String fullPathToResultsFolder = pathToResultsFolder + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         File resultsFolder = new File(fullPathToResultsFolder);
-        resultsFolder.mkdir();
+        boolean result = resultsFolder.mkdirs();
 
         return resultsFolder;
     }

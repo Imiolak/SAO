@@ -52,7 +52,7 @@ public class RoundRobinTournamentPerformer implements ITournamentPerformer {
 
         GameRunner gameRunner = new GameRunner(darkPiecesPlayer.getPlayer(), lightPiecesPlayer.getPlayer());
         GameResults gameResult = gameRunner.runGame();
-        System.out.println("game Result " + gameResult);
+        //System.out.println("game Result " + gameResult);
         IPlayer winner = gameResult.getWinner();
         if (winner != null) {
             if (winner.getPlayerColor() == PieceColor.Dark) {

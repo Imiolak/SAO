@@ -22,7 +22,7 @@ public class GameRunner {
     }
 
     public GameResults runGame() {
-        System.out.println("game " + player1 + " " + player2);
+        //System.out.println("game " + player1 + " " + player2);
 
         initializeGame();
         gameLoop();

@@ -106,6 +106,6 @@ public class StableMovesPlayer implements IPlayer{
 
     @Override
     public String toString() {
-        return "stable" + parameter;
+        return "stable" + String.format("%.2f", parameter);
     }
 }
