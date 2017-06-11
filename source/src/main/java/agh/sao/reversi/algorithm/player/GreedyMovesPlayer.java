@@ -28,6 +28,11 @@ public class GreedyMovesPlayer implements IPlayer{
     }
 
     @Override
+    public void setRandomParameters() {
+
+    }
+
+    @Override
     public Move chooseMoveToPerform(GameState board, List<Move> availableMoves) {
         Collections.shuffle(availableMoves);
         Move move = availableMoves.stream().max(new Comparator<Move>() {

@@ -16,16 +16,19 @@ public class Experiment {
     private final int iterations;
     private final int tournamentSize;
     private final ISpecimenCrossover specimenCrossover;
+    private final ISpecimenMutation specimenMutation;
     private final ISpecimenSuccessionStrategy specimenSuccession;
     private final ITournamentPerformer tournamentPerformer;
 
     private List<StrategySpecimen> population;
 
-    public Experiment(int iterations, int tournamentSize, ISpecimenCrossover specimenCrossover,
+    public Experiment(int iterations, int tournamentSize,
+                      ISpecimenCrossover specimenCrossover, ISpecimenMutation specimenMutation,
                       ISpecimenSuccessionStrategy specimenSuccession, ITournamentPerformer tournamentPerformer) {
         this.iterations = iterations;
         this.tournamentSize = tournamentSize;
         this.specimenCrossover = specimenCrossover;
+        this.specimenMutation = specimenMutation;
         this.specimenSuccession = specimenSuccession;
         this.tournamentPerformer = tournamentPerformer;
     }
@@ -53,6 +56,9 @@ public class Experiment {
                 tournamentPerformer.setCompetingStrategies(tournamentCompetitors);
                 tournamentPerformer.performTournament();
                 StrategySpecimen[] parentSpecimens = tournamentPerformer.getTopPerformers(2);
+
+                specimenMutation.decideAndPerformMutation(parentSpecimens[0]);
+                specimenMutation.decideAndPerformMutation(parentSpecimens[1]);
                 StrategySpecimen childSpecimen = specimenCrossover.doCrossover(parentSpecimens[0], parentSpecimens[1]);
 
                 specimenSuccession.decideSuccessors(newPopulation, parentSpecimens, childSpecimen);

@@ -37,6 +37,11 @@ public class StableMovesPlayer implements IPlayer{
         return new StableMovesPlayer(this.parameter);
     }
 
+    @Override
+    public void setRandomParameters() {
+        parameter = getRandomParameterValue();
+    }
+
     public double getParameter() { return this.parameter; }
 
     public void setParameter(double parameter) { this.parameter = parameter; }

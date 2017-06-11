@@ -34,6 +34,11 @@ public class CornersMovesPlayer implements IPlayer{
         return new CornersMovesPlayer();
     }
 
+    @Override
+    public void setRandomParameters() {
+
+    }
+
     private int getDistBeetween(int[] pos1, int[] pos2) {
         return (int) Math.sqrt(Math.pow((pos1[0]-pos2[0]), 2) + Math.pow((pos1[1]-pos2[1]), 2));
     }

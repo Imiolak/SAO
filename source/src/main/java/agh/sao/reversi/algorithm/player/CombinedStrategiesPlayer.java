@@ -9,9 +9,9 @@ import java.util.List;
 
 public class CombinedStrategiesPlayer implements IPlayer {
 
-    private final IPlayer player1;
-    private final int strategySwitchPoint;
-    private final IPlayer player2;
+    private IPlayer player1;
+    private int strategySwitchPoint;
+    private IPlayer player2;
 
     private int performedMoves = 0;
     private PieceColor playerColor;
@@ -36,6 +36,18 @@ public class CombinedStrategiesPlayer implements IPlayer {
 
     public IPlayer getPlayer2() {
         return player2;
+    }
+
+    public void setPlayer1(IPlayer player1) {
+        this.player1 = player1;
+    }
+
+    public void setStrategySwitchPoint(int strategySwitchPoint) {
+        this.strategySwitchPoint = strategySwitchPoint;
+    }
+
+    public void setPlayer2(IPlayer player2) {
+        this.player2 = player2;
     }
 
     @Override
@@ -83,10 +95,18 @@ public class CombinedStrategiesPlayer implements IPlayer {
     }
 
     @Override
+    public void setRandomParameters() {
+        player1.setRandomParameters();
+        player2.setRandomParameters();
+    }
+
+    @Override
     public String toString() {
         if (player2 == null) {
             return player1.toString();
         }
         return player1.toString() + "-" + strategySwitchPoint + "-" + player2.toString();
     }
+
+
 }

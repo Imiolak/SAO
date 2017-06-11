@@ -18,4 +18,6 @@ public interface IPlayer {
     Move chooseMoveToPerform(GameState board, List<Move> availableMoves);
 
     IPlayer copy();
+
+    void setRandomParameters();
 }

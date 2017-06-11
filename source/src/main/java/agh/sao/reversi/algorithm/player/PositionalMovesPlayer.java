@@ -15,7 +15,7 @@ public class PositionalMovesPlayer implements IPlayer {
 
     private PieceColor playerColor;
     private int[][] riskBoard;
-    private final int[] riskBoardValues;
+    private int[] riskBoardValues;
 
     public PositionalMovesPlayer(int[] params) {
         this(params[0], params[1], params[2], params[3], params[4]);
@@ -43,6 +43,18 @@ public class PositionalMovesPlayer implements IPlayer {
                                         , this.riskBoardValues[2]
                                         , this.riskBoardValues[3]
                                         , this.riskBoardValues[4]);
+    }
+
+    @Override
+    public void setRandomParameters() {
+        int[] newParameters = getRandomParameterValues();
+        this.riskBoardValues = new int[]{
+                newParameters[0],
+                newParameters[1],
+                newParameters[2],
+                newParameters[3],
+                newParameters[4]};
+        this.makeRiskBoard();
     }
 
     public int[] getParameters() { return this.riskBoardValues; }

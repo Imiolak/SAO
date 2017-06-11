@@ -42,4 +42,9 @@ public class RealPersonPlayer implements IPlayer {
     public IPlayer copy() {
         return new RealPersonPlayer();
     }
+
+    @Override
+    public void setRandomParameters() {
+
+    }
 }

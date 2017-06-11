@@ -43,4 +43,10 @@ public class StrategySpecimen {
                 gamesWon + "\t" + gamesLost + "\t" + gamesPlayed;
 
     }
+
+    public void resetStats() {
+        gamesPlayed = 0;
+        gamesWon = 0;
+        gamesLost = 0;
+    }
 }

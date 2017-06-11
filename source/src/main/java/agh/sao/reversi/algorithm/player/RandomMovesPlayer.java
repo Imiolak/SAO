@@ -34,6 +34,11 @@ public class RandomMovesPlayer implements IPlayer {
     }
 
     @Override
+    public void setRandomParameters() {
+
+    }
+
+    @Override
     public String toString() {
         return "random";
     }

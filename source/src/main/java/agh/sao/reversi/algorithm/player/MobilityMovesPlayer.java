@@ -34,6 +34,11 @@ public class MobilityMovesPlayer implements IPlayer{
         return new MobilityMovesPlayer(this.parameter);
     }
 
+    @Override
+    public void setRandomParameters() {
+        parameter = getRandomParameterValue();
+    }
+
     public double getParameter() { return this.parameter; }
 
     public void setParameter(double parameter) { this.parameter = parameter; }

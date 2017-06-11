@@ -7,11 +7,12 @@ public class Main {
     public static void main(String... args) {
 
         ISpecimenCrossover crossover = new SpecimenCrossover();
+        ISpecimenMutation mutation = new SpecimenMutation();
         ITournamentPerformer tournament = new RoundRobinTournamentPerformer();
 
         Experiment[] experiments = {
-                new Experiment(15, 8, crossover, new OnlyChildSuccessionStratey(), tournament),
-                new Experiment(15, 8, crossover, new ChildAndParentsSuccessionStrategy(), tournament),
+                new Experiment(50, 10, crossover, mutation, new OnlyChildSuccessionStratey(), tournament),
+                new Experiment(50, 10, crossover, mutation, new ChildAndParentsSuccessionStrategy(), tournament),
         };
         ExperimentPlatform platform = new ExperimentPlatform(
                 new StrategySetCreator(),
