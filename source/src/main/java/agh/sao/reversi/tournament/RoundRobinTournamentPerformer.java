@@ -62,6 +62,9 @@ public class RoundRobinTournamentPerformer implements ITournamentPerformer {
                 lightPiecesPlayer.registerWin();
                 darkPiecesPlayer.registerLoss();
             }
+        } else {
+            darkPiecesPlayer.registerDraw();
+            lightPiecesPlayer.registerDraw();
         }
     }
 }
