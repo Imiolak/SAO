@@ -11,8 +11,8 @@ public class Main {
         ITournamentPerformer tournament = new RoundRobinTournamentPerformer();
 
         Experiment[] experiments = {
-                new Experiment(50, 10, crossover, mutation, new OnlyChildSuccessionStratey(), tournament),
-                new Experiment(50, 10, crossover, mutation, new ChildAndParentsSuccessionStrategy(), tournament),
+                new Experiment(30, 5, crossover, mutation, new OnlyChildSuccessionStratey(), tournament),
+                new Experiment(30, 5, crossover, mutation, new ChildAndParentsSuccessionStrategy(), tournament),
         };
         ExperimentPlatform platform = new ExperimentPlatform(
                 new StrategySetCreator(),

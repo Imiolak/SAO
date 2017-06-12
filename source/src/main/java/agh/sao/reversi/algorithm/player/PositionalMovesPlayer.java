@@ -106,11 +106,11 @@ public class PositionalMovesPlayer implements IPlayer {
     public static int[] getRandomParameterValues() {
         Random rng = new Random();
         return new int[] {
-                rng.nextInt(30) + 30,
-                rng.nextInt(20) + 15,
+                rng.nextInt(30) + 35,
+                rng.nextInt(30) + 20,
                 rng.nextInt(30) + 50,
-                rng.nextInt(15),
-                rng.nextInt(20) + 80
+                rng.nextInt(35),
+                rng.nextInt(35) + 65
         };
     }
 
