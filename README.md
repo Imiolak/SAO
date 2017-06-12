@@ -151,27 +151,92 @@ The tournament engine can compete players against each others and select the bes
 
 ### 4.2 Tournament selection
 #### 4.2.1 Child and parents succession
-In each iteration:
-    Do 20 times:
+In each iteration, do 20 times:
 * randomly chose two 10-strategies sets
-* round-robin games in each set
+* two round-robin rounds in each set
+* best-of-two match between each strategy - starting strategies alternate
 * two winning strategies populate and together with their child advance to next iteration
 
 #### 4.2.2 Only child succession
-In each iteration:
-    Do 60 times:
+In each iteration, do 60 times:
 * randomly chose two 10-strategies sets
-* round-robin games in each set
+* two round-robin rounds in each set
+* best-of-two match between each strategy - starting strategies alternate
 * two winning strategies populate, but only their child advances to next iteration
 
-### 4.3 Disturbance
-After each iteration:
-* decide whether to disturb agents based on its winning precentage
+### 4.3 Mutation
+Before winning strategies populate:
+* decide whether to mutate (disturb) specimens based on its winning precentage
+* if mutation is to occur, specimens' stats (games played, games won) are rest
 
 ### 4.4 Determining winners
 After a set number of iterations a list of all surviving specimen is sorted by win percentage in a descending manner. Should there be any specimen within (subject to change) 5% win rate margin, a second tournament in performed.
 
 ## 5. Results
+### 5.1 Experiment 1
+Expriment details:
+* population size: 60
+* iterations: 15
+* tournament size: 8
+
+#### 5.1.1 Only child succession
+* total number of of matches: 50400
+
+As early as in 4th iteration the whole population consists of only positional strategy players.
+
+#### 5.1.2 Parents and child succession
+* total number of of matches: 16800
+
+Positional strategy players still dominate. This time the population consists of 100% positional strategy players as late as in 9th iteration.
+
+#### 5.1.3 Experiment 1 conclusion
+Positional strategy players dominate tournaments. Due to lack of mutation all winning positional strategy players advance to next iterations unchanged, which results in population containing only positional strategy players quickly.
+
+### 5.2 Experiment 2
+Experiment details:
+* population size: 60
+* iterations: 50
+* tournament size: 10
+
+#### 5.2.1 Only child succession
+* total number of of matches: 270000
+
+Positional strategy players still dominate all match-ups. Positional strategy players occupy the top of the leaderboard as early as fifth iteration, but don't take up over 50% of the population until 13th iteration.
+
+#### 5.2.2 Parents and child succession
+* total number of of matches: 90000
+
+Positional strategy players are at the top of the population already after 2nd iteration. This time, because of the fact that parents as well as a child advance to next iteration, positional strategy players make for over 70% of the population aftert 3rd iteration.
+
+#### 5.2.3 Experiment 2 conclusion
+Introduction of mutation allowed for population to bo more diversified during most of the experiment in case of only child succession. Child and parents succession introduced a kind of elitism, where most of the players advancing to next iterations are positional strategy players. Mutation ensures they never make for 100% of the population.
+
+### 5.3 Experiment 3
+Experiment details:
+* population size: 60
+* iterations: 30
+* tournament size: 5
+
+#### 5.3.1 Only child succession
+* total number of of matches: 36000
+
+#### 5.3.2 Parents and child succession
+* total number of of matches: 12000
+
+### 5.4 Experiment 4
+Experiment details:
+* population size: 50
+* iterations: 30
+* tournament size: 5
+* extra: positional strategy excluded
+
+Positional strategy players dominated all previous experiments. This experiment was performed to find out how other strategies cope against each other.
+
+#### 5.4.1 Only child succession
+* total number of of matches: 30000
+
+#### 5.4.2 Parents and child succession
+* total number of of matches: 10000
 
 ## 6. Sources/Bibliography
 * Application to play Reversi. Genetic algorithms to moves. Each player makes random moves. Genetic algorith to search best moves in own move's history. Different depth search. (Reversi on 10x10 board)
