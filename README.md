@@ -75,7 +75,7 @@ The aim of this project is to autmate the process of finding the optimal strateg
     Value set - { 0, 1, 2, .. , 19 } - 0 indicates that only strategt 1 should be used throughout the game
     * strategy2 - strategy to use after changeCondigion in met
     
-### 2.4 Problem solving proposition - coś z solving ma być
+### 2.4 Problem solving proposition
 #### 2.4.1 Model
 Each strategy will be represented as an agent containing to following properties:
 * gamesPlayed [int] - number of games played by the stratgy agent
