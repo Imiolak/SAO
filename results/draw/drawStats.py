@@ -5,7 +5,7 @@ from collections import Counter
 import matplotlib.pyplot as plt
 import numpy as np
 
-def makePlot(file, pathToSave):
+def makePlot(file, pathToSave, number):
     with open(file) as f:
         strategies = []
         for line in f.readlines():
@@ -22,6 +22,8 @@ def makePlot(file, pathToSave):
     indexes = np.arange(len(labels))
     plt.bar(indexes, values)
     plt.xticks(indexes, labels, rotation='vertical')
+    plt.title('Population after '+str(number)+' iterations')
+    plt.ylabel('Number of strategies in population')
     plt.tight_layout()
     plt.savefig(pathToSave)
     plt.clf()
@@ -41,7 +43,12 @@ for folder in FOLDERS:
     if not os.path.exists(directory):
             os.makedirs(directory)
     for file in files:
+        if 'final' in file:
+            number = len(files)
+        else:
+            number = int(file) + 1
         directoryToSave = directory+file+'.png'
         print directoryToSave
-        makePlot(PATH+'/'+folder+'/'+file, directoryToSave)
-# makePlot(FILE)
+        makePlot(PATH+'/'+folder+'/'+file, directoryToSave, number)
+    #     break
+    # break
